@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>MasterTech SpA | Enterprise IT, AI & Cybersecurity</title>
+    <!-- Favicon con Versionado Forzado -->
+    <link rel="icon" type="image/png" href="images/logo.png?v=2.0">
+    <link rel="shortcut icon" type="image/png" href="images/logo.png?v=2.0">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css?v=2.0">
+    
+    <!-- Google Translate Script -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'es',
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-cyan-500 selection:text-black scanline overflow-x-hidden w-full">
+
+    <div id="google_translate_element" class="hidden"></div>
+
+    <!-- Top Bar Responsiva -->
+    <div class="bg-slate-900/95 border-b border-cyan-500/30 text-[11px] sm:text-xs py-2 px-3 sm:px-8 flex flex-col sm:flex-row justify-between items-center gap-2 relative z-50 font-mono w-full">
+        <div class="flex items-center gap-2 text-cyan-400 text-center sm:text-left">
+            <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping flex-shrink-0"></span>
+            <span class="tracking-normal sm:tracking-widest truncate max-w-[280px] sm:max-w-none">MASTERTECH_CORE_v4.2 // STATUS: ONLINE</span>
+        </div>
+        
+        <div class="flex flex-wrap items-center justify-center gap-3 w-full sm:w-auto">
+            <div class="flex items-center gap-1.5">
+                <i class="fa-solid fa-globe text-cyan-400"></i>
+                <span class="text-slate-400 hidden md:inline">IDIOMA:</span>
+                <select id="custom-language-selector" class="bg-slate-950 border border-cyan-500/40 text-cyan-300 text-[11px] rounded px-1.5 py-0.5 focus:outline-none focus:border-cyan-400 cursor-pointer font-mono">
+                    <option value="es">Español (ES)</option>
+                    <option value="en">English (US)</option>
+                    <option value="pt">Português (BR)</option>
+                    <option value="fr">Français (FR)</option>
+                    <option value="de">Deutsch (DE)</option>
+                    <option value="ja">日本語 (JP)</option>
+                </select>
+            </div>
+            <a href="mailto:contacto@mastertechg.com" class="text-cyan-400 hover:text-cyan-300 font-bold underline truncate">contacto@mastertechg.com</a>
+        </div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-50 bg-slate-950/90 backdrop-blur-md border-b border-cyan-500/20 px-3 sm:px-8 py-3 sm:py-4 flex items-center justify-between w-full">
+        <a href="#" class="flex items-center gap-2 sm:gap-3 group max-w-[75%] sm:max-w-none">
+            <div class="p-1 rounded-xl bg-slate-900/90 border border-cyan-500/50 shadow-[0_0_15px_rgba(0,212,255,0.4)] transition group-hover:scale-105 flex-shrink-0">
+                <img src="images/logo.png?v=2.0" alt="MasterTech Logo" class="h-7 sm:h-10 w-auto object-contain rounded logo-highlight">
+            </div>
+            <div class="flex flex-col min-w-0">
+                <span class="font-black text-base sm:text-xl tracking-wider text-white flex items-center gap-1 truncate">
+                    MASTERTECH <span class="text-cyan-400 text-[9px] sm:text-xs px-1 py-0.5 bg-cyan-500/10 border border-cyan-500/40 rounded font-mono hidden xs:inline-block">GROUP</span>
+                </span>
+                <span class="text-[8px] sm:text-[9px] text-slate-400 tracking-widest uppercase font-mono truncate">MasterTech SpA</span>
+            </div>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-6 text-xs font-mono tracking-wider uppercase text-slate-300">
+            <a href="#about" class="hover:text-cyan-400 transition">// Empresa</a>
+            <a href="#pillars" class="hover:text-cyan-400 transition">// Capacidades</a>
+            <a href="#api-sandbox" class="hover:text-cyan-400 transition">// API Sandbox</a>
+            <a href="#neural-engine" class="hover:text-cyan-400 transition">// Neural Engine</a>
+            <a href="#configurator" class="hover:text-cyan-400 transition">// Cotizador</a>
+            <a href="#leadership" class="hover:text-cyan-400 transition">// Liderazgo</a>
+            <a href="#careers" class="px-4 py-2 rounded bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-extrabold transition shadow-lg shadow-cyan-500/30">UNIRSE</a>
+        </nav>
+
+        <button id="mobile-menu-btn" class="lg:hidden text-cyan-400 text-2xl p-2 focus:outline-none" aria-label="Abrir menú">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </header>
+
+    <!-- Mobile Drawer Nav -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-slate-900 border-b border-cyan-500/30 px-6 py-4 flex flex-col gap-4 text-xs font-mono tracking-wider uppercase w-full">
+        <a href="#about" class="mobile-link text-slate-300 hover:text-cyan-400">// Empresa</a>
+        <a href="#pillars" class="mobile-link text-slate-300 hover:text-cyan-400">// Capacidades</a>
+        <a href="#api-sandbox" class="mobile-link text-slate-300 hover:text-cyan-400">// API Sandbox</a>
+        <a href="#neural-engine" class="mobile-link text-slate-300 hover:text-cyan-400">// Neural Engine</a>
+        <a href="#configurator" class="mobile-link text-slate-300 hover:text-cyan-400">// Cotizador</a>
+        <a href="#leadership" class="mobile-link text-slate-300 hover:text-cyan-400">// Liderazgo</a>
+        <a href="#careers" class="mobile-link px-4 py-2 rounded bg-cyan-500 text-slate-950 font-extrabold text-center">// UNIRSE</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative pt-12 sm:pt-20 pb-20 sm:pb-32 px-4 sm:px-8 max-w-7xl mx-auto text-center overflow-hidden w-full">
+        <canvas id="hero-canvas" class="absolute inset-0 w-full h-full -z-10 opacity-50 pointer-events-none"></canvas>
+        
+        <div class="inline-flex items-center gap-2 px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/40 text-cyan-400 text-[10px] sm:text-xs font-mono uppercase tracking-wider mb-6 max-w-full truncate">
+            <i class="fa-solid fa-building-shield flex-shrink-0"></i> <span class="truncate">MASTERTECH SpA // SOCIEDAD POR ACCIONES</span>
+        </div>
+        
+        <h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white tracking-tight mb-4 sm:mb-6 leading-tight break-words">
+            INGENIERÍA INFORMÁTICA <br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-indigo-400 to-purple-500">
+                DE ALTO RENDIMIENTO
+            </span>
+        </h1>
+        
+        <p class="text-slate-300 text-sm sm:text-lg md:text-xl max-w-3xl mx-auto mb-8 sm:mb-10 leading-relaxed font-sans px-2">
+            Desarrollamos soluciones tecnológicas enterprise. Especializados en los tres grandes pilares de la informática: Desarrollo Web & Móvil, Inteligencia Artificial y Ciberseguridad.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 font-mono text-xs sm:text-sm px-4">
+            <a href="#api-sandbox" class="w-full sm:w-auto px-6 py-3.5 rounded bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-extrabold transition shadow-xl shadow-cyan-500/30 flex items-center justify-center gap-2">
+                PROBAR API SANDBOX <i class="fa-solid fa-code"></i>
+            </a>
+            <a href="#configurator" class="w-full sm:w-auto px-6 py-3.5 rounded bg-slate-900 hover:bg-slate-800 border border-cyan-500/40 text-cyan-300 font-semibold transition flex items-center justify-center gap-2">
+                COTIZAR PROYECTO <i class="fa-solid fa-sliders"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Empresa Section -->
+    <section id="about" class="py-16 sm:py-20 bg-slate-900/40 border-y border-cyan-500/20 px-4 sm:px-8 w-full">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
+            <div class="space-y-4 sm:space-y-6 text-left">
+                <span class="text-xs font-mono text-cyan-400 uppercase tracking-widest">// SOBRE LA EMPRESA //</span>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white">MasterTech SpA</h2>
+                <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                    MasterTech SpA es una empresa chilena constituida legalmente como Sociedad por Acciones, fundada con la ambición de liderar la transformación digital global.
+                </p>
+                <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
+                    Trabajamos con código limpio, arquitecturas escalables y estándares internacionales de ingeniería para garantizar soluciones de software que resistan el paso del tiempo.
+                </p>
+                <div class="grid grid-cols-2 gap-3 sm:gap-4 font-mono text-xs">
+                    <div class="p-3 sm:p-4 bg-slate-950 border border-slate-800 rounded-xl">
+                        <span class="block text-lg sm:text-xl font-bold text-cyan-400">Chile</span>
+                        <span class="text-slate-400 text-[10px] sm:text-xs">Sede Central</span>
+                    </div>
+                    <div class="p-3 sm:p-4 bg-slate-950 border border-slate-800 rounded-xl">
+                        <span class="block text-lg sm:text-xl font-bold text-indigo-400">Global</span>
+                        <span class="text-slate-400 text-[10px] sm:text-xs">Red de Colaboradores</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-slate-950 border border-cyan-500/40 rounded-2xl p-6 sm:p-8 text-center shadow-2xl relative overflow-hidden flex flex-col items-center justify-center">
+                <div class="p-4 sm:p-6 rounded-2xl bg-slate-900/80 border border-cyan-500/40 mb-4 sm:mb-6 shadow-[0_0_30px_rgba(0,212,255,0.3)] max-w-[80%]">
+                    <img src="images/logo.png?v=2.0" alt="MasterTech Corporate Logo" class="h-20 sm:h-28 w-auto object-contain mx-auto logo-highlight">
+                </div>
+                <h3 class="text-xl sm:text-2xl font-black text-white tracking-widest mb-1">MASTERTECH</h3>
+                <p class="text-[10px] sm:text-xs font-mono text-cyan-400 uppercase tracking-widest">Tecnología de Vanguardia</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3 Pilares -->
+    <section id="pillars" class="py-16 sm:py-24 px-4 sm:px-8 max-w-7xl mx-auto w-full">
+        <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-2">
+            <span class="text-xs font-mono text-cyan-400 uppercase tracking-widest">// NÚCLEO TÉCNICO //</span>
+            <h2 class="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">LOS TRES GRANDES DE LA INFORMÁTICA</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+            <div class="p-6 sm:p-8 bg-slate-900/80 border border-cyan-500/30 rounded-2xl hover:border-cyan-400 transition-all duration-300 relative group overflow-hidden shadow-2xl">
+                <div class="w-12 h-12 sm:w-14 sm:h-14 bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 rounded-xl flex items-center justify-center text-2xl sm:text-3xl mb-4 sm:mb-6">
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+                </div>
+                <h3 class="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3">Desarrollo Web & Móvil</h3>
+                <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6">
+                    Aplicaciones en tiempo real, renderizado dinámico SSR, microservicios y sistemas nativos optimizados.
+                </p>
+                <div class="flex flex-wrap gap-1.5 sm:gap-2 text-[10px] font-mono text-cyan-300">
+                    <span class="px-2 py-1 bg-slate-950 border border-slate-800 rounded">Next.js 16</span>
+                    <span class="px-2 py-1 bg-slate-950 border border-slate-800 rounded">NestJS</span>
+                    <span class="px-2 py-1 bg-slate-950 border border-slate-800 rounded">React Native</span>
+                </div>
+            </div>
+
+            <div class="p-6 sm:p-8 bg-slate-900/80 border border-indigo-500/30 rounded-2xl hover:border-indigo-400 transition-all duration-300 relative group overflow-hidden shadow-2xl">
+                <div class="w-12 h-12 sm:w-14 sm:h-14 bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 rounded-xl flex items-center justify-center text-2xl sm:text-3xl mb-4 sm:mb-6">
+                    <i class="fa-solid fa-brain"></i>
+                </div>
+                <h3 class="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3">Inteligencia Artificial</h3>
+                <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6">
+                    Inferencia de modelos neuronales, integración de LLMs, automatización cognitiva y análisis predictivo.
+                </p>
+                <div class="flex flex-wrap gap-1.5 sm:gap-2 text-[10px] font-mono text-indigo-300">
+                    <span class="px-2 py-1 bg-slate-950 border border-slate-800 rounded">Python</span>
+                    <span class="px-2 py-1 bg-slate-950 border border-slate-800 rounded">Machine Learning</span>
+                    <span class="px-2 py-1 bg-slate-950 border border-slate-800 rounded">LLMs</span>
+                </div>
+            </div>
+
+            <div class="p-6 sm:p-8 bg-slate-900/80 border border-purple-500/30 rounded-2xl hover:border-purple-400 transition-all duration-300 relative group overflow-hidden shadow-2xl">
+                <div class="w-12 h-12 sm:w-14 sm:h-14 bg-purple-500/10 border border-purple-500/30 text-purple-400 rounded-xl flex items-center justify-center text-2xl sm:text-3xl mb-4 sm:mb-6">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <h3 class="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3">Ciberseguridad</h3>
+                <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6">
+                    Protección de activos, cifrado AES-256, auditorías de vulnerabilidades y hardening de servidores.
+                </p>
+                <div class="flex flex-wrap gap-1.5 sm:gap-2 text-[10px] font-mono text-purple-300">
+                    <span class="px-2 py-1 bg-slate-950 border border-slate-800 rounded">SecOps</span>
+                    <span class="px-2 py-1 bg-slate-950 border border-slate-800 rounded">AES-256</span>
+                    <span class="px-2 py-1 bg-slate-950 border border-slate-800 rounded">Auditing</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FUNCIONALIDAD 1: API Sandbox Real -->
+    <section id="api-sandbox" class="py-16 sm:py-20 bg-slate-900/50 border-y border-cyan-500/20 px-4 sm:px-8 w-full">
+        <div class="max-w-5xl mx-auto space-y-6 sm:space-y-8">
+            <div class="text-center space-y-2">
+                <span class="text-xs font-mono text-cyan-400 uppercase tracking-widest">// INTERACTIVO //</span>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white">Developer API Sandbox</h2>
+                <p class="text-slate-400 text-xs sm:text-sm">Genera tu API Key temporal y ejecuta peticiones simuladas a los nodos de MasterTech.</p>
+            </div>
+
+            <div class="bg-slate-950 border border-cyan-500/40 rounded-2xl p-4 sm:p-6 font-mono text-xs shadow-2xl space-y-4 sm:space-y-6">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 pb-4 border-b border-slate-800">
+                    <div class="w-full sm:w-auto">
+                        <span class="text-slate-400 block mb-1">Tu API Key Generada:</span>
+                        <span id="api-key-display" class="text-cyan-400 font-bold bg-slate-900 px-2.5 py-1 rounded border border-cyan-500/30 block sm:inline-block truncate max-w-full">mt_live_x89a02931f88a2026</span>
+                    </div>
+                    <button id="gen-key-btn" class="w-full sm:w-auto px-4 py-2 bg-cyan-500/20 hover:bg-cyan-500/40 text-cyan-300 border border-cyan-500/50 rounded font-bold transition text-center">
+                        <i class="fa-solid fa-key mr-1"></i> Generar Nueva Key
+                    </button>
+                </div>
+
+                <div class="space-y-3">
+                    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3">
+                        <div class="flex items-center gap-2">
+                            <span class="px-2 py-1 bg-emerald-500/20 text-emerald-400 font-bold rounded text-[10px]">GET</span>
+                            <span class="text-slate-300 text-[11px] truncate">.../v1/healthcheck</span>
+                        </div>
+                        <button id="send-request-btn" class="w-full sm:w-auto sm:ml-auto px-4 py-2 bg-cyan-500 text-slate-950 font-bold rounded hover:bg-cyan-400 transition text-center">
+                            Enviar Request
+                        </button>
+                    </div>
+
+                    <div id="api-response-output" class="p-3 sm:p-4 bg-slate-900/90 rounded border border-slate-800 text-slate-300 overflow-x-auto max-h-48 text-[11px]">
+                        <pre>// Presiona "Enviar Request" para probar la latencia...</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FUNCIONALIDAD 2: Neural Code & Text Analyzer -->
+    <section id="neural-engine" class="py-16 sm:py-20 px-4 sm:px-8 max-w-5xl mx-auto w-full">
+        <div class="text-center mb-6 sm:mb-8 space-y-2">
+            <span class="text-xs font-mono text-cyan-400 uppercase tracking-widest">// HERRAMIENTA EN VIVO //</span>
+            <h2 class="text-2xl sm:text-4xl font-extrabold text-white">Analizador Neural de Código</h2>
+            <p class="text-slate-400 text-xs sm:text-sm">Pega un fragmento de código para evaluarlo con nuestro algoritmo.</p>
+        </div>
+
+        <div class="bg-slate-900/80 border border-cyan-500/30 rounded-2xl p-4 sm:p-6 shadow-2xl space-y-4 font-mono text-xs">
+            <textarea id="code-input" rows="4" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 sm:p-4 text-slate-200 focus:outline-none focus:border-cyan-500 transition text-xs" placeholder="// Pega código Javascript, Python o C++ aquí..."></textarea>
+            
+            <div class="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-3">
+                <button id="analyze-btn" class="w-full sm:w-auto px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-lg transition shadow-lg shadow-indigo-600/30 text-center">
+                    <i class="fa-solid fa-microchip mr-1"></i> Analizar con Neural Engine
+                </button>
+                <span id="analysis-status" class="text-slate-400 text-center sm:text-right text-[11px]">Listo para analizar.</span>
+            </div>
+
+            <div id="analysis-results" class="hidden grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-4 border-t border-slate-800">
+                <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 text-center">
+                    <span class="block text-slate-400 text-[10px]">LÍNEAS EVALUADAS</span>
+                    <span id="res-lines" class="text-lg font-bold text-cyan-400">0</span>
+                </div>
+                <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 text-center">
+                    <span class="block text-slate-400 text-[10px]">COMPLEJIDAD</span>
+                    <span id="res-complexity" class="text-lg font-bold text-amber-400">Baja</span>
+                </div>
+                <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 text-center">
+                    <span class="block text-slate-400 text-[10px]">PUNTAJE SEGURIDAD</span>
+                    <span id="res-score" class="text-lg font-bold text-emerald-400">98/100</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FUNCIONALIDAD 3: Cotizador e Integrador -->
+    <section id="configurator" class="py-16 sm:py-20 bg-slate-900/40 border-y border-cyan-500/20 px-4 sm:px-8 w-full">
+        <div class="max-w-5xl mx-auto space-y-6 sm:space-y-8">
+            <div class="text-center space-y-2">
+                <span class="text-xs font-mono text-cyan-400 uppercase tracking-widest">// PLANIFICADOR //</span>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white">Cotizador de Arquitectura</h2>
+                <p class="text-slate-400 text-xs sm:text-sm">Selecciona los módulos para estimar la capacidad de tu proyecto.</p>
+            </div>
+
+            <div class="bg-slate-950 border border-cyan-500/40 rounded-2xl p-4 sm:p-8 shadow-2xl grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-center">
+                <div class="space-y-4 font-mono text-xs">
+                    <div>
+                        <label class="block text-slate-400 mb-1.5">Desarrollo Plataforma:</label>
+                        <select id="cfg-dev" class="w-full bg-slate-900 border border-slate-800 rounded-lg p-2.5 text-white">
+                            <option value="web">Web Enterprise (Next.js / React)</option>
+                            <option value="mobile">App Móvil Multiplataforma</option>
+                            <option value="full">Web + App Móvil Integrada</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-slate-400 mb-1.5">Módulo de Inteligencia Artificial:</label>
+                        <select id="cfg-ai" class="w-full bg-slate-900 border border-slate-800 rounded-lg p-2.5 text-white">
+                            <option value="none">Sin Integración IA</option>
+                            <option value="llm">Integración LLM / Chatbot Inteligente</option>
+                            <option value="custom">Modelo Neuronal Personalizado</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-slate-400 mb-1.5">Nivel de Ciberseguridad:</label>
+                        <select id="cfg-sec" class="w-full bg-slate-900 border border-slate-800 rounded-lg p-2.5 text-white">
+                            <option value="standard">Estándar (SSL + Hardening Básico)</option>
+                            <option value="advanced">Avanzado (Auditoría SecOps + Cifrado AES-256)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="p-5 sm:p-6 bg-slate-900 rounded-2xl border border-cyan-500/30 font-mono text-center space-y-3 sm:space-y-4">
+                    <span class="text-xs text-slate-400 block uppercase">Estimación de Desarrollo</span>
+                    <div id="cfg-price" class="text-2xl sm:text-3xl font-black text-cyan-400">$1.500 USD</div>
+                    <p id="cfg-time" class="text-xs text-slate-300">Tiempo estimado: 2 a 4 semanas</p>
+                    <a href="mailto:contacto@mastertechg.com" class="inline-block w-full py-3 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold rounded-lg transition text-xs">
+                        Solicitar Propuesta Formal
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership Section -->
+    <section id="leadership" class="py-16 sm:py-20 px-4 sm:px-8 max-w-4xl mx-auto w-full">
+        <div class="bg-slate-950 border border-cyan-500/30 rounded-2xl p-6 sm:p-12 flex flex-col md:flex-row items-center gap-6 sm:gap-8 shadow-2xl">
+            <div class="w-28 h-28 sm:w-36 sm:h-36 rounded-2xl bg-slate-900 border border-cyan-500/40 p-2.5 flex items-center justify-center flex-shrink-0 shadow-[0_0_20px_rgba(0,212,255,0.2)]">
+                <img src="images/logo.png?v=2.0" alt="MasterTech Symbol" class="w-full h-full object-contain rounded-xl logo-highlight">
+            </div>
+            <div class="space-y-3 sm:space-y-4 text-center md:text-left">
+                <div>
+                    <span class="text-xs font-mono text-cyan-400 uppercase tracking-widest">// FUNDADOR & CEO //</span>
+                    <h3 class="text-2xl sm:text-3xl font-black text-white mt-1">Andrés Olguín</h3>
+                </div>
+                <p class="text-slate-300 text-xs sm:text-sm leading-relaxed font-sans">
+                    Chileno, 22 años. Técnico Nivel Medio en Programación y Estudiante de 4° Año de Ingeniería Civil en Informática en la Universidad Andrés Bello (UNAB), Chile.
+                </p>
+                <div class="flex flex-wrap justify-center md:justify-start gap-2 sm:gap-3 pt-1 font-mono text-xs">
+                    <a href="https://www.linkedin.com/in/andr%C3%A9s-olguin-a9b3aa350/" target="_blank" class="px-3.5 py-1.5 bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/40 text-cyan-300 rounded transition flex items-center gap-2">
+                        <i class="fa-brands fa-linkedin"></i> LinkedIn
+                    </a>
+                    <a href="https://github.com/andres-olguin" target="_blank" class="px-3.5 py-1.5 bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 rounded transition flex items-center gap-2">
+                        <i class="fa-brands fa-github"></i> GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Careers / Call to Action -->
+    <section id="careers" class="py-16 sm:py-24 px-4 sm:px-8 max-w-7xl mx-auto text-center w-full">
+        <div class="bg-gradient-to-b from-slate-900 to-slate-950 border border-cyan-500/30 rounded-3xl p-6 sm:p-16 relative overflow-hidden shadow-2xl">
+            <i class="fa-solid fa-earth-americas text-4xl sm:text-6xl text-cyan-400 mb-4 sm:mb-6 inline-block"></i>
+            <h2 class="text-2xl sm:text-5xl font-black text-white mb-4 sm:mb-6 tracking-tight">CONVOCATORIA GLOBAL</h2>
+            <p class="text-slate-300 text-xs sm:text-lg max-w-2xl mx-auto mb-4 sm:mb-6 leading-relaxed font-sans px-2">
+                Aceptamos ingenieros, desarrolladores y especialistas en ciberseguridad de todos los países para trabajar en equipo.
+            </p>
+            <p class="text-cyan-400 font-mono text-sm sm:text-lg font-bold mb-6 sm:mb-8 break-all">
+                Correo Oficial: <a href="mailto:contacto@mastertechg.com" class="underline hover:text-cyan-300">contacto@mastertechg.com</a>
+            </p>
+            <a href="mailto:contacto@mastertechg.com" class="inline-flex items-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 rounded bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-mono font-extrabold text-xs sm:text-base transition shadow-xl shadow-cyan-500/30">
+                <i class="fa-solid fa-paper-plane"></i> ENVIAR SOLICITUD
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-slate-950 border-t border-slate-900 py-8 sm:py-12 px-4 sm:px-8 text-slate-400 text-xs font-mono w-full">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-6 text-center sm:text-left">
+            <div class="flex items-center gap-2 sm:gap-3">
+                <img src="images/logo.png?v=2.0" alt="MasterTech Icon" class="h-5 sm:h-6 w-auto object-contain logo-highlight">
+                <span class="font-bold text-slate-200">MasterTech SpA</span>
+                <span class="text-slate-700">|</span>
+                <span class="truncate">mastertechg.com</span>
+            </div>
+            <p class="text-[11px]">© 2026 MasterTech SpA. Todos los derechos reservados.</p>
+            <div class="flex gap-4 text-base">
+                <a href="https://github.com/andres-olguin" target="_blank" class="hover:text-cyan-400 transition" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/andr%C3%A9s-olguin-a9b3aa350/" target="_blank" class="hover:text-cyan-400 transition" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://facebook.com/profile.php?id=61592311520660" target="_blank" class="hover:text-cyan-400 transition" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lógica JS -->
+    <script>
+        // Mobile Menu
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Language Selector
+        const langSelector = document.getElementById('custom-language-selector');
+        langSelector.addEventListener('change', (e) => {
+            const lang = e.target.value;
+            const googleSelect = document.querySelector('.goog-te-combo');
+            if (googleSelect) {
+                googleSelect.value = lang;
+                googleSelect.dispatchEvent(new Event('change'));
+            }
+        });
+
+        // Hero Canvas
+        const canvas = document.getElementById('hero-canvas');
+        if (canvas) {
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+
+            function resizeCanvas() {
+                canvas.width = canvas.offsetWidth;
+                canvas.height = canvas.offsetHeight;
+            }
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+
+            for (let i = 0; i < 35; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 0.8,
+                    vy: (Math.random() - 0.5) * 0.8,
+                    radius: Math.random() * 2 + 1
+                });
+            }
+
+            function animateCanvas() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = '#00d4ff';
+                ctx.strokeStyle = 'rgba(0, 212, 255, 0.12)';
+
+                for (let i = 0; i < particles.length; i++) {
+                    let p = particles[i];
+                    p.x += p.vx;
+                    p.y += p.vy;
+
+                    if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                    if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    for (let j = i + 1; j < particles.length; j++) {
+                        let p2 = particles[j];
+                        let dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+                        if (dist < 110) {
+                            ctx.beginPath();
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(p2.x, p2.y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+                requestAnimationFrame(animateCanvas);
+            }
+            animateCanvas();
+        }
+
+        // FUNCION 1: API Sandbox
+        const genKeyBtn = document.getElementById('gen-key-btn');
+        const apiKeyDisplay = document.getElementById('api-key-display');
+        const sendReqBtn = document.getElementById('send-request-btn');
+        const apiResponseOutput = document.getElementById('api-response-output');
+
+        genKeyBtn.addEventListener('click', () => {
+            const randomHex = Array.from({length: 16}, () => Math.floor(Math.random()*16).toString(16)).join('');
+            apiKeyDisplay.textContent = `mt_live_${randomHex}`;
+        });
+
+        sendReqBtn.addEventListener('click', () => {
+            apiResponseOutput.innerHTML = `<span class="text-amber-400">Enviando petición a la red...</span>`;
+            setTimeout(() => {
+                const mockResponse = {
+                    status: 200,
+                    message: "MasterTech Gateway Responsive",
+                    timestamp: new Date().toISOString(),
+                    node: "cl-santiago-node-01",
+                    apiKeyValid: true,
+                    metrics: {
+                        latencyMs: 1.2,
+                        encryption: "AES-256-GCM"
+                    }
+                };
+                apiResponseOutput.innerHTML = `<pre class="text-emerald-400">${JSON.stringify(mockResponse, null, 2)}</pre>`;
+            }, 500);
+        });
+
+        // FUNCION 2: Neural Code Analyzer
+        const analyzeBtn = document.getElementById('analyze-btn');
+        const codeInput = document.getElementById('code-input');
+        const analysisStatus = document.getElementById('analysis-status');
+        const analysisResults = document.getElementById('analysis-results');
+        const resLines = document.getElementById('res-lines');
+        const resComplexity = document.getElementById('res-complexity');
+        const resScore = document.getElementById('res-score');
+
+        analyzeBtn.addEventListener('click', () => {
+            const text = codeInput.value.trim();
+            if (!text) {
+                analysisStatus.textContent = "Ingresa un bloque de código.";
+                return;
+            }
+
+            analysisStatus.textContent = "Procesando código...";
+            setTimeout(() => {
+                const lines = text.split('\n').length;
+                resLines.textContent = lines;
+
+                if (lines > 30) {
+                    resComplexity.textContent = "Alta";
+                    resComplexity.className = "text-lg font-bold text-red-400";
+                } else if (lines > 10) {
+                    resComplexity.textContent = "Media";
+                    resComplexity.className = "text-lg font-bold text-amber-400";
+                } else {
+                    resComplexity.textContent = "Baja";
+                    resComplexity.className = "text-lg font-bold text-emerald-400";
+                }
+
+                const score = Math.min(100, Math.max(70, 100 - Math.floor(lines / 2)));
+                resScore.textContent = `${score}/100`;
+
+                analysisResults.classList.remove('hidden');
+                analysisStatus.textContent = "Análisis completado.";
+            }, 400);
+        });
+
+        // FUNCION 3: Cotizador
+        const cfgDev = document.getElementById('cfg-dev');
+        const cfgAi = document.getElementById('cfg-ai');
+        const cfgSec = document.getElementById('cfg-sec');
+        const cfgPrice = document.getElementById('cfg-price');
+        const cfgTime = document.getElementById('cfg-time');
+
+        function updateEstimate() {
+            let base = 1500;
+            let weeks = 2;
+
+            if (cfgDev.value === 'mobile') { base += 800; weeks += 1; }
+            if (cfgDev.value === 'full') { base += 1800; weeks += 2; }
+
+            if (cfgAi.value === 'llm') { base += 700; weeks += 1; }
+            if (cfgAi.value === 'custom') { base += 2000; weeks += 3; }
+
+            if (cfgSec.value === 'advanced') { base += 900; weeks += 1; }
+
+            cfgPrice.textContent = `$${base.toLocaleString('es-CL')} USD`;
+            cfgTime.textContent = `Tiempo estimado: ${weeks} a ${weeks + 2} semanas`;
+        }
+
+        cfgDev.addEventListener('change', updateEstimate);
+        cfgAi.addEventListener('change', updateEstimate);
+        cfgSec.addEventListener('change', updateEstimate);
+    </script>
+</body>
+</html>

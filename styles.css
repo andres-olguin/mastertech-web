@@ -1,0 +1,47 @@
+/* Bloqueo estricto de desbordamiento horizontal para móviles */
+html, body {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    top: 0px !important;
+    scroll-behavior: smooth;
+}
+
+/* Filtro CSS para resaltar el logo */
+.logo-highlight {
+    filter: brightness(1.25) contrast(1.2) drop-shadow(0 0 10px rgba(0, 212, 255, 0.6));
+    transition: filter 0.3s ease;
+}
+
+.logo-highlight:hover {
+    filter: brightness(1.4) contrast(1.3) drop-shadow(0 0 16px rgba(0, 212, 255, 0.9));
+}
+
+/* Oculta los marcos de Google Translate */
+.goog-te-banner-frame.skiptranslate, 
+.goog-te-banner-frame,
+.goog-gt-tt {
+    display: none !important;
+}
+
+/* Líneas de escaneo cibernéticas */
+.scanline {
+    background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,0),
+        rgba(255,255,255,0) 50%,
+        rgba(0, 0, 0, 0.2) 50%,
+        rgba(0, 0, 0, 0.2)
+    );
+    background-size: 100% 4px;
+}
+
+/* Ajustes de tipografía fluida para móviles ultra pequeños */
+@media (max-width: 380px) {
+    h1 {
+        font-size: 1.875rem !important; /* 30px */
+        line-height: 2.25rem !important;
+    }
+    h2 {
+        font-size: 1.5rem !important; /* 24px */
+    }
+}
