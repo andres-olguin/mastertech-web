@@ -1,610 +1,1688 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>MasterTech SpA | Enterprise Software, AI & Architecture</title>
-    <link rel="icon" type="image/png" href="images/logo.png?v=2.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>MasterTech SpA | Inteligencia Aplicada al Software</title>
+    <meta name="description" content="Desarrollamos aplicaciones web y móviles con IA integrada. Modernización de sistemas y consultoría estratégica para empresas.">
+    <meta property="og:title" content="MasterTech SpA - Inteligencia Aplicada al Software">
+    <meta property="og:description" content="Soluciones digitales que aprenden, predicen y se adaptan a tus usuarios.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mastertechg.com">
+    <meta property="og:image" content="https://mastertechg.com/images/logo.png">
+    <link rel="icon" type="image/png" href="images/logo.png">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css?v=2.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* ===== ESTILOS BASE ===== */
+        body { background: #0b1120; color: #e2e8f0; font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+        .hero-bg {
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(56, 189, 248, 0.15) 0%, transparent 70%),
+                radial-gradient(circle at 80% 70%, rgba(99, 102, 241, 0.12) 0%, transparent 60%),
+                radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 1) 0%, #0b1120 100%);
+            background-image: 
+                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2338bdf8' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background-blend-mode: overlay;
+        }
+        .gradient-text { background: linear-gradient(135deg, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-4px); border-color: #38bdf8; box-shadow: 0 0 30px rgba(56, 189, 248, 0.15); }
+        .project-slide { transition: opacity 0.6s ease, transform 0.6s ease; }
+        .project-slide.hidden-slide { opacity: 0; transform: translateX(20px); pointer-events: none; position: absolute; top: 0; left: 0; width: 100%; }
+        .project-slide.active-slide { opacity: 1; transform: translateX(0); position: relative; }
+        .tab-btn { transition: all 0.2s; }
+        .tab-btn.active { border-bottom: 2px solid #38bdf8; color: #38bdf8; }
+        .counter-number { font-size: 2.5rem; font-weight: 800; }
+        @media (max-width: 640px) { .counter-number { font-size: 2rem; } }
+
+        /* ===== BOTONES FLOTANTES FIJOS (derecha) ===== */
+        .floating-btn {
+            position: fixed;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            border-radius: 9999px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .floating-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.6);
+        }
+        /* WhatsApp */
+        .whatsapp-btn {
+            right: 24px;
+            bottom: 24px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            font-size: 32px;
+            animation: pulse-whatsapp 2s infinite;
+        }
+        .whatsapp-btn i { line-height: 60px; }
+        @keyframes pulse-whatsapp {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
+            70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        /* Traducir (arriba del WhatsApp) */
+        .translate-btn-floating {
+            right: 24px;
+            bottom: 96px;
+            background: rgba(30, 41, 59, 0.85);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            color: #e2e8f0;
+            width: 56px;
+            height: 56px;
+            font-size: 26px;
+        }
+        .translate-btn-floating i { line-height: 56px; }
+        .translate-btn-floating:hover {
+            background: rgba(56, 189, 248, 0.2);
+            border-color: #38bdf8;
+        }
+
+        /* ===== TRADUCTOR MODERNO ===== */
+        /* Ocultar elementos nativos antiguos de Google */
+        .goog-te-banner-frame,
+        .goog-te-gadget,
+        .goog-te-gadget-simple,
+        #google_translate_element select {
+            display: none !important;
+        }
+        body {
+            top: 0px !important;
+        }
+
+        /* Widget flotante moderno con efecto Glassmorphism */
+        #google_translate_widget {
+            position: fixed;
+            bottom: 160px;
+            right: 20px;
+            z-index: 9998;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            padding: 1.25rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(56, 189, 248, 0.15);
+            display: none;
+            width: 280px;
+            transition: all 0.3s ease;
+        }
+        /* Selector estilizado moderno */
+        .custom-translate-select {
+            width: 100%;
+            background: #0b1120;
+            color: #e2e8f0;
+            border: 1px solid #334155;
+            padding: 0.6rem 0.8rem;
+            border-radius: 0.5rem;
+            font-size: 0.85rem;
+            font-family: inherit;
+            cursor: pointer;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .custom-translate-select:focus {
+            border-color: #38bdf8;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+        }
+
+        /* ===== RESPONSIVIDAD ===== */
+        @media (max-width: 640px) {
+            .hero-title { font-size: 2.2rem !important; line-height: 1.2 !important; }
+            .hero-sub { font-size: 1rem !important; }
+            .counter-number { font-size: 1.8rem !important; }
+            .project-slide .grid { grid-template-columns: 1fr !important; }
+            .project-slide .md\:col-span-2 { grid-column: span 1 !important; }
+            .tab-btn { padding: 0.5rem 0.75rem !important; font-size: 0.7rem !important; }
+            .whatsapp-btn { width: 54px; height: 54px; font-size: 28px; right: 16px; bottom: 16px; }
+            .translate-btn-floating { width: 50px; height: 50px; font-size: 22px; right: 16px; bottom: 80px; }
+            #google_translate_widget { right: 10px; left: 10px; max-width: none; bottom: 140px; width: auto; }
+        }
+        @media (max-width: 480px) {
+            .hero-title { font-size: 1.8rem !important; }
+        }
+
+        /* ===== OTROS ESTILOS ===== */
+        .testimonial-card {
+            border-left: 3px solid #38bdf8;
+            background: rgba(30, 41, 59, 0.3);
+        }
+        .code-analyzer-output {
+            background: #0f172a;
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.75rem;
+            white-space: pre-wrap;
+            border: 1px solid #1e293b;
+            min-height: 80px;
+            overflow-x: auto;
+        }
+        .faq-item {
+            border-bottom: 1px solid #1e293b;
+            padding: 1rem 0;
+        }
+        .faq-item:last-child { border-bottom: none; }
+        .faq-question { cursor: pointer; font-weight: 600; color: #e2e8f0; }
+        .faq-answer { display: none; padding-top: 0.5rem; color: #94a3b8; font-size: 0.9rem; }
+        .faq-item.active .faq-answer { display: block; }
+        .blog-card {
+            background: rgba(30, 41, 59, 0.3);
+            border: 1px solid #1e293b;
+            border-radius: 12px;
+            padding: 1.2rem;
+            transition: all 0.3s;
+        }
+        .blog-card:hover { border-color: #38bdf8; }
+        .price-market { text-decoration: line-through; color: #94a3b8; font-size: 0.85rem; }
+        .price-launch { color: #38bdf8; font-weight: 800; font-size: 1.5rem; }
+        @media (max-width: 640px) { .price-launch { font-size: 1.2rem; } }
+        .sensor-bar {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0.25rem 0;
+        }
+        .sensor-bar .bar {
+            height: 6px;
+            border-radius: 3px;
+            background: #38bdf8;
+            transition: width 0.5s;
+        }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+        .contact-banner {
+            background: rgba(56, 189, 248, 0.05);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            border-radius: 12px;
+            padding: 1.2rem;
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+        .contact-banner a {
+            color: #38bdf8;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .contact-banner a:hover { text-decoration: underline; }
+    </style>
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-cyan-500 selection:text-black overflow-x-hidden w-full">
+<body>
 
-    <!-- Top Bar: Información Corporativa & WhatsApp -->
-    <div class="bg-slate-900 border-b border-cyan-500/30 text-[11px] sm:text-xs py-2 px-4 sm:px-8 flex flex-col md:flex-row justify-between items-center gap-2 font-mono">
-        <div class="flex items-center gap-2 text-cyan-400">
-            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-            <span>MASTERTECH_CORE_v4.2 // STATUS: ONLINE</span>
+    <!-- ===== TOP BAR ===== -->
+    <div class="bg-slate-900 border-b border-slate-800 text-[11px] sm:text-xs text-slate-400 py-2 px-3 sm:px-6 flex flex-wrap items-center justify-between gap-2">
+        <div class="flex items-center gap-2 flex-wrap">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>Viña del Mar, Chile</span>
+            <span class="hidden xs:inline">|</span>
+            <a href="mailto:contacto@mastertechg.com" class="hover:text-cyan-400 transition">contacto@mastertechg.com</a>
         </div>
-        
-        <div class="flex flex-wrap items-center justify-center gap-4">
-            <a href="https://wa.me/56992947393" target="_blank" class="text-emerald-400 hover:text-emerald-300 font-bold flex items-center gap-1.5">
-                <i class="fa-brands fa-whatsapp text-sm"></i> +569 9294 7393
-            </a>
+        <div class="flex items-center gap-3 flex-wrap">
+            <a href="https://wa.me/56992947393" target="_blank" class="hover:text-emerald-400"><i class="fa-brands fa-whatsapp mr-1"></i> <span class="hidden xs:inline">+569 9294 7393</span></a>
             <span class="text-slate-700">|</span>
-            <a href="mailto:contacto@mastertechg.com" class="text-cyan-400 hover:text-cyan-300 font-bold underline">contacto@mastertechg.com</a>
+            <span class="text-emerald-400 font-mono text-[10px]">OPERATIONAL</span>
         </div>
     </div>
 
-    <!-- Barra de Redes Sociales Completa -->
-    <div class="bg-slate-950 border-b border-slate-900 py-1.5 px-4 text-slate-400 text-xs font-mono">
-        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
-            <span class="text-[10px] uppercase text-cyan-500 font-bold">// CANALES OFICIALES & COMUNIDAD</span>
-            <div class="flex flex-wrap items-center gap-3 text-sm">
-                <a href="https://wa.me/56992947393" target="_blank" class="hover:text-emerald-400 transition" title="WhatsApp Directo"><i class="fa-brands fa-whatsapp"></i></a>
-                <a href="https://chat.whatsapp.com/TU-GRUPO-AQUI" target="_blank" class="hover:text-emerald-400 transition text-[10px] border border-emerald-500/40 px-1.5 py-0.5 rounded font-bold" title="Grupo WhatsApp">GRUPO WA</a>
-                <a href="https://discord.gg/TU-SERVER" target="_blank" class="hover:text-indigo-400 transition" title="Discord Server"><i class="fa-brands fa-discord"></i></a>
-                <a href="https://www.linkedin.com/in/andr%C3%A9s-olguin-a9b3aa350/" target="_blank" class="hover:text-cyan-400 transition" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="https://github.com/andres-olguin" target="_blank" class="hover:text-white transition" title="GitHub"><i class="fa-brands fa-github"></i></a>
-                <a href="https://facebook.com/profile.php?id=61592311520660" target="_blank" class="hover:text-blue-400 transition" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
-                <a href="https://x.com" target="_blank" class="hover:text-white transition" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
-                <a href="https://instagram.com" target="_blank" class="hover:text-pink-400 transition" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://threads.net" target="_blank" class="hover:text-white transition" title="Threads"><i class="fa-brands fa-threads"></i></a>
-                <a href="https://tiktok.com" target="_blank" class="hover:text-cyan-300 transition" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-                <a href="https://youtube.com" target="_blank" class="hover:text-red-500 transition" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Header Navigation -->
-    <header class="sticky top-0 z-50 bg-slate-950/90 backdrop-blur-md border-b border-cyan-500/20 px-4 sm:px-8 py-3 flex items-center justify-between w-full">
-        <a href="#" class="flex items-center gap-3">
-            <div class="p-1 rounded-xl bg-slate-900 border border-cyan-500/50 shadow-[0_0_15px_rgba(0,212,255,0.4)]">
-                <img src="images/logo.png?v=2.0" alt="MasterTech Logo" class="h-8 w-auto object-contain">
-            </div>
-            <div class="flex flex-col">
-                <span class="font-black text-lg text-white">MASTERTECH <span class="text-cyan-400 text-xs px-1 py-0.5 bg-cyan-500/10 border border-cyan-500/40 rounded font-mono">GROUP</span></span>
-                <span class="text-[9px] text-slate-400 tracking-widest uppercase font-mono">MasterTech SpA</span>
+    <!-- ===== HEADER ===== -->
+    <header class="sticky top-0 z-50 bg-slate-950/90 backdrop-blur-md border-b border-slate-800 px-3 sm:px-6 py-2 sm:py-3 flex items-center justify-between">
+        <a href="#" class="flex items-center gap-2">
+            <img src="images/logo.png" alt="MasterTech SpA" class="h-8 sm:h-10 w-auto object-contain">
+            <div class="leading-tight hidden sm:block">
+                <span class="font-bold text-white text-base sm:text-lg tracking-tight">MASTERTECH <span class="text-cyan-400">SpA</span></span>
+                <span class="block text-[8px] sm:text-[9px] text-slate-500 tracking-widest uppercase">Inteligencia Aplicada</span>
             </div>
         </a>
-
-        <nav class="hidden lg:flex items-center gap-6 text-xs font-mono tracking-wider uppercase text-slate-300">
-            <a href="#domains" class="hover:text-cyan-400 transition">// Especialidades</a>
-            <a href="#projects" class="hover:text-cyan-400 transition">// Proyectos Reales</a>
-            <a href="#neural-engine" class="hover:text-cyan-400 transition">// Analizador de Código</a>
-            <a href="#downloads" class="hover:text-cyan-400 transition">// Descargas</a>
-            <a href="#configurator" class="hover:text-cyan-400 transition">// Cotizador</a>
-            <a href="https://wa.me/56992947393" target="_blank" class="px-4 py-2 rounded bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold transition shadow-lg shadow-emerald-500/30">CONTACTAR WA</a>
+        <nav class="hidden lg:flex items-center gap-4 xl:gap-6 text-[11px] font-medium text-slate-300 uppercase tracking-wider">
+            <a href="#historia" class="hover:text-cyan-400 transition">Historia</a>
+            <a href="#filosofia" class="hover:text-cyan-400 transition">Filosofía</a>
+            <a href="#servicios" class="hover:text-cyan-400 transition">Servicios</a>
+            <a href="#proyectos" class="hover:text-cyan-400 transition">Proyectos</a>
+            <a href="#testimonios" class="hover:text-cyan-400 transition">Reseñas</a>
+            <a href="#herramientas" class="hover:text-cyan-400 transition">Dev Tools</a>
+            <a href="#faq" class="hover:text-cyan-400 transition">FAQ</a>
+            <a href="#comunidad" class="hover:text-cyan-400 transition">Comunidad</a>
+            <a href="#cotizador" class="hover:text-cyan-400 transition">Cotizar</a>
+            <a href="#" class="px-3 py-1.5 bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 rounded-lg hover:bg-cyan-500/20 transition">Área Cliente</a>
         </nav>
+        <button id="menuToggle" class="lg:hidden text-slate-300 hover:text-white text-xl">
+            <i class="fa-solid fa-bars"></i>
+        </button>
     </header>
 
-    <!-- Hero Section -->
-    <section class="relative pt-16 pb-20 px-4 sm:px-8 max-w-7xl mx-auto text-center w-full">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/40 text-cyan-400 text-xs font-mono uppercase tracking-wider mb-6">
-            <i class="fa-solid fa-building-shield"></i> MASTERTECH SpA // DESARROLLO & INFRAESTRUCTURA GLOBAL
-        </div>
-        
-        <h1 class="text-4xl sm:text-6xl font-black text-white tracking-tight mb-6 leading-tight">
-            INGENIERÍA SOFTWARE DE ALTO RENDIMIENTO <br>
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-indigo-400 to-purple-500">
-                SISTEMAS REALES, NO SIMULACIONES
-            </span>
-        </h1>
-        
-        <p class="text-slate-300 text-base sm:text-lg max-w-4xl mx-auto mb-8 leading-relaxed font-sans">
-            Líderes en Desarrollo Web & Móvil, Machine Learning, Ciberseguridad, Informática Biomédica, Legal, Gráfica, Educativa, FinTech, Geomática, IoT Industrial y Psicoinformática.
-        </p>
+    <!-- Menú móvil -->
+    <div id="mobileMenu" class="hidden lg:hidden bg-slate-900/95 backdrop-blur-md border-b border-slate-800 px-4 py-4 space-y-2 text-sm">
+        <a href="#historia" class="block hover:text-cyan-400 transition">Historia</a>
+        <a href="#filosofia" class="block hover:text-cyan-400 transition">Filosofía</a>
+        <a href="#servicios" class="block hover:text-cyan-400 transition">Servicios</a>
+        <a href="#proyectos" class="block hover:text-cyan-400 transition">Proyectos</a>
+        <a href="#testimonios" class="block hover:text-cyan-400 transition">Reseñas</a>
+        <a href="#herramientas" class="block hover:text-cyan-400 transition">Dev Tools</a>
+        <a href="#faq" class="block hover:text-cyan-400 transition">FAQ</a>
+        <a href="#comunidad" class="block hover:text-cyan-400 transition">Comunidad</a>
+        <a href="#cotizador" class="block hover:text-cyan-400 transition">Cotizar</a>
+        <a href="#" class="block px-3 py-1.5 bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 rounded-lg text-center">Área Cliente</a>
+    </div>
 
-        <!-- Marquee / Badges de Tecnologías Dominadas -->
-        <div class="flex flex-wrap justify-center gap-2 max-w-5xl mx-auto mb-10 font-mono text-xs text-cyan-400">
-            <span class="px-3 py-1 bg-slate-900 border border-slate-800 rounded">JavaScript</span>
-            <span class="px-3 py-1 bg-slate-900 border border-slate-800 rounded">TypeScript</span>
-            <span class="px-3 py-1 bg-slate-900 border border-slate-800 rounded">Python</span>
-            <span class="px-3 py-1 bg-slate-900 border border-slate-800 rounded">Django</span>
-            <span class="px-3 py-1 bg-slate-900 border border-slate-800 rounded">C / C++</span>
-            <span class="px-3 py-1 bg-slate-900 border border-slate-800 rounded">Java</span>
-            <span class="px-3 py-1 bg-slate-900 border border-slate-800 rounded">PHP</span>
-            <span class="px-3 py-1 bg-slate-900 border border-slate-800 rounded">SQL / SQLite</span>
-            <span class="px-3 py-1 bg-slate-900 border border-slate-800 rounded">React / Next.js</span>
-            <span class="px-3 py-1 bg-slate-900 border border-slate-800 rounded">HTML5 / CSS3</span>
-        </div>
-        
-        <div class="flex flex-col sm:flex-row justify-center gap-4 font-mono text-sm">
-            <a href="#neural-engine" class="px-6 py-3.5 rounded bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-extrabold transition shadow-xl shadow-cyan-500/30 flex items-center justify-center gap-2">
-                PROBAR ANALIZADOR EN VIVO <i class="fa-solid fa-code"></i>
-            </a>
-            <a href="https://chat.whatsapp.com/TU-GRUPO-AQUI" target="_blank" class="px-6 py-3.5 rounded bg-slate-900 hover:bg-slate-800 border border-emerald-500/40 text-emerald-400 font-semibold transition flex items-center justify-center gap-2">
-                UNIRSE AL GRUPO WA <i class="fa-brands fa-whatsapp"></i>
-            </a>
-        </div>
-    </section>
+    <!-- ===== BOTONES FLOTANTES ===== -->
+    <a href="https://wa.me/56992947393" target="_blank" class="floating-btn whatsapp-btn" aria-label="WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+    <button id="translateToggleFloating" class="floating-btn translate-btn-floating" aria-label="Traducir página">
+        <i class="fa-solid fa-globe"></i>
+    </button>
 
-    <!-- LAS 12 ESPECIALIDADES DE MASTERTECH SPA -->
-    <section id="domains" class="py-16 bg-slate-900/40 border-y border-cyan-500/20 px-4 sm:px-8 w-full">
-        <div class="max-w-7xl mx-auto space-y-10">
-            <div class="text-center space-y-2">
-                <span class="text-xs font-mono text-cyan-400 uppercase tracking-widest">// DOMINIO CIENTÍFICO Y TÉCNICO //</span>
-                <h2 class="text-3xl font-extrabold text-white">Especializaciones Enterprise</h2>
+    <!-- ===== WIDGET TRADUCTOR MODERNO ===== -->
+    <div id="google_translate_widget">
+        <div class="flex items-center justify-between mb-3 pb-2 border-b border-slate-800">
+            <span class="text-xs font-mono text-cyan-400 font-bold tracking-wider">// IDIOMA / LANGUAGE</span>
+            <i class="fa-solid fa-language text-cyan-400"></i>
+        </div>
+        <select id="customTranslateSelect" class="custom-translate-select">
+            <option value="es">🇪🇸 Español (Original)</option>
+            <option value="en">🇺🇸 English</option>
+            <option value="pt">🇧🇷 Português</option>
+            <option value="fr">🇫🇷 Français</option>
+            <option value="de">🇩🇪 Deutsch</option>
+            <option value="it">🇮🇹 Italiano</option>
+            <option value="zh-CN">🇨🇳 中文 (Chinese)</option>
+            <option value="ja">🇯🇵 日本語 (Japanese)</option>
+        </select>
+        <!-- Contenedor nativo oculto para inicialización -->
+        <div id="google_translate_element"></div>
+    </div>
+
+    <main class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-16 sm:space-y-20">
+
+        <!-- ========== HERO ========== -->
+        <section class="hero-bg text-center pt-6 pb-8 sm:pt-8 sm:pb-12 space-y-6 sm:space-y-8 rounded-2xl sm:rounded-3xl border border-slate-800/50 shadow-2xl px-4 sm:px-8 py-8 sm:py-12 relative overflow-hidden">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-[10px] sm:text-xs font-mono uppercase tracking-wider">
+                <i class="fa-regular fa-circle-check"></i> 12 proyectos activos en 2026
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 font-mono text-xs">
-                <div class="p-6 bg-slate-950 border border-cyan-500/30 rounded-xl space-y-2">
-                    <i class="fa-solid fa-laptop-code text-2xl text-cyan-400"></i>
-                    <h3 class="text-base font-bold text-white">Desarrollo Web & Móvil</h3>
-                    <p class="text-slate-400">Next.js, Node.js, React Native, TypeScript y microservicios omnicanal.</p>
+            <h1 class="hero-title text-3xl sm:text-5xl lg:text-6xl font-extrabold leading-tight text-white relative z-10">
+                Construimos el futuro de tu negocio <br>
+                <span class="gradient-text">con software que aprende</span>
+            </h1>
+            <p class="hero-sub text-slate-300 text-sm sm:text-base lg:text-lg max-w-3xl mx-auto leading-relaxed relative z-10">
+                Desarrollamos aplicaciones <strong class="text-white">web y móviles</strong> con inteligencia artificial integrada. 
+                <span class="text-cyan-300">Automatiza procesos, predice comportamientos y multiplica tu retorno de inversión.</span>
+            </p>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 max-w-3xl mx-auto pt-2 relative z-10">
+                <div class="p-2 sm:p-3 bg-slate-900/50 border border-slate-800 rounded-lg backdrop-blur-sm">
+                    <div class="counter-number text-cyan-400">12</div>
+                    <div class="text-[8px] sm:text-[10px] text-slate-400 uppercase tracking-wider">Proyectos Activos</div>
                 </div>
-
-                <div class="p-6 bg-slate-950 border border-indigo-500/30 rounded-xl space-y-2">
-                    <i class="fa-solid fa-brain text-2xl text-indigo-400"></i>
-                    <h3 class="text-base font-bold text-white">Machine Learning & IA</h3>
-                    <p class="text-slate-400">Modelos de lenguaje (LLM), visión por computador, PyTorch y TensorFlow.</p>
+                <div class="p-2 sm:p-3 bg-slate-900/50 border border-slate-800 rounded-lg backdrop-blur-sm">
+                    <div class="counter-number text-indigo-400">12</div>
+                    <div class="text-[8px] sm:text-[10px] text-slate-400 uppercase tracking-wider">Especialidades</div>
                 </div>
-
-                <div class="p-6 bg-slate-950 border border-purple-500/30 rounded-xl space-y-2">
-                    <i class="fa-solid fa-shield-halved text-2xl text-purple-400"></i>
-                    <h3 class="text-base font-bold text-white">Ciberseguridad</h3>
-                    <p class="text-slate-400">Auditorías OWASP, cifrado AES-256, SecOps y API Gateways Layer 7.</p>
+                <div class="p-2 sm:p-3 bg-slate-900/50 border border-slate-800 rounded-lg backdrop-blur-sm">
+                    <div class="counter-number text-emerald-400">98%</div>
+                    <div class="text-[8px] sm:text-[10px] text-slate-400 uppercase tracking-wider">Satisfacción</div>
+                    <div class="text-[6px] sm:text-[8px] text-slate-500">(basado en reseñas)</div>
                 </div>
-
-                <div class="p-6 bg-slate-950 border border-emerald-500/30 rounded-xl space-y-2">
-                    <i class="fa-solid fa-dna text-2xl text-emerald-400"></i>
-                    <h3 class="text-base font-bold text-white">Informática Biomédica</h3>
-                    <p class="text-slate-400">Procesamiento de imágenes DICOM, integración HL7/FHIR y análisis genómico.</p>
-                </div>
-
-                <div class="p-6 bg-slate-950 border border-amber-500/30 rounded-xl space-y-2">
-                    <i class="fa-solid fa-scale-balanced text-2xl text-amber-400"></i>
-                    <h3 class="text-base font-bold text-white">Informática Jurídica & IT Law</h3>
-                    <p class="text-slate-400">Smart Contracts, auditoría algorítmica y trazabilidad digital legal.</p>
-                </div>
-
-                <div class="p-6 bg-slate-950 border border-pink-500/30 rounded-xl space-y-2">
-                    <i class="fa-solid fa-cubes text-2xl text-pink-400"></i>
-                    <h3 class="text-base font-bold text-white">Informática Gráfica</h3>
-                    <p class="text-slate-400">Renderizado 3D en tiempo real con WebGL, Three.js y motores geométricos.</p>
-                </div>
-
-                <div class="p-6 bg-slate-950 border border-blue-500/30 rounded-xl space-y-2">
-                    <i class="fa-solid fa-graduation-cap text-2xl text-blue-400"></i>
-                    <h3 class="text-base font-bold text-white">EdTech / Informática Educativa</h3>
-                    <p class="text-slate-400">Sistemas LMS adaptativos orientados por modelos de retención cognitiva.</p>
-                </div>
-
-                <div class="p-6 bg-slate-950 border border-emerald-400/30 rounded-xl space-y-2">
-                    <i class="fa-solid fa-chart-line text-2xl text-emerald-400"></i>
-                    <h3 class="text-base font-bold text-white">FinTech & Informática Financiera</h3>
-                    <p class="text-slate-400">Procesamiento HFT de ultra baja latencia, motores contables SQL y pasarelas.</p>
-                </div>
-
-                <div class="p-6 bg-slate-950 border border-green-500/30 rounded-xl space-y-2">
-                    <i class="fa-solid fa-earth-americas text-2xl text-green-400"></i>
-                    <h3 class="text-base font-bold text-white">Geomática & AgTech</h3>
-                    <p class="text-slate-400">Sistemas SIG, agricultura de precisión, telemetría satelital y análisis espectral.</p>
-                </div>
-
-                <div class="p-6 bg-slate-950 border border-orange-500/30 rounded-xl space-y-2">
-                    <i class="fa-solid fa-microchip text-2xl text-orange-400"></i>
-                    <h3 class="text-base font-bold text-white">IoT & Sistemas Embebidos</h3>
-                    <p class="text-slate-400">Firmware en C/C++ para ESP32/ARM, automatización SCADA e industrial.</p>
-                </div>
-
-                <div class="p-6 bg-slate-950 border border-rose-500/30 rounded-xl space-y-2">
-                    <i class="fa-solid fa-head-side-virus text-2xl text-rose-400"></i>
-                    <h3 class="text-base font-bold text-white">Psicoinformática</h3>
-                    <p class="text-slate-400">Modelado de patrones neuro-conductuales e interacción basada en bioseñales.</p>
-                </div>
-
-                <div class="p-6 bg-slate-950 border border-slate-700 rounded-xl space-y-2">
-                    <i class="fa-solid fa-server text-2xl text-slate-300"></i>
-                    <h3 class="text-base font-bold text-white">DevOps & Cloud Systems</h3>
-                    <p class="text-slate-400">Docker, Kubernetes, Redis Caching, Nginx Failover e integración CI/CD.</p>
+                <div class="p-2 sm:p-3 bg-slate-900/50 border border-slate-800 rounded-lg backdrop-blur-sm">
+                    <div class="counter-number text-purple-400">20+</div>
+                    <div class="text-[8px] sm:text-[10px] text-slate-400 uppercase tracking-wider">Tecnologías</div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- SECCIÓN PROYECTOS DESTACADOS: Nexus-Gateway -->
-    <section id="projects" class="py-16 bg-slate-900/40 border-y border-cyan-500/20 px-4 sm:px-8 w-full">
-        <div class="max-w-7xl mx-auto space-y-8">
-            <div class="text-center space-y-2">
-                <span class="text-xs font-mono text-cyan-400 uppercase tracking-widest">// PROYECTO PUBLICADO //</span>
-                <h2 class="text-3xl font-extrabold text-white">Nexus-Gateway v2.0</h2>
-                <p class="text-slate-400 text-sm max-w-2xl mx-auto">API Gateway y Balanceador de Carga Enterprise con Tolerancia a Fallos (Failover) y Caché Redis.</p>
+            <div class="flex flex-wrap justify-center gap-3 sm:gap-4 pt-4 relative z-10">
+                <a href="#cotizador" class="px-5 sm:px-8 py-2.5 sm:py-3.5 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold rounded-lg transition shadow-lg shadow-cyan-500/30 flex items-center gap-2 text-sm sm:text-base">
+                    Solicitar Consultoría <i class="fa-regular fa-paper-plane"></i>
+                </a>
+                <a href="#proyectos" class="px-5 sm:px-8 py-2.5 sm:py-3.5 bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-bold rounded-lg transition flex items-center gap-2 text-sm sm:text-base">
+                    Ver Casos de Éxito <i class="fa-solid fa-arrow-right"></i>
+                </a>
             </div>
+            <div class="flex flex-wrap justify-center gap-4 sm:gap-6 pt-2 text-[10px] sm:text-xs text-slate-500 font-mono relative z-10">
+                <span><i class="fa-regular fa-circle-check text-emerald-400 mr-1"></i> Metodologías Ágiles</span>
+                <span><i class="fa-regular fa-circle-check text-emerald-400 mr-1"></i> IA Explicable (XAI)</span>
+                <span><i class="fa-regular fa-circle-check text-emerald-400 mr-1"></i> Arquitectura Cloud-Native</span>
+            </div>
+            <div class="absolute inset-0 pointer-events-none">
+                <div class="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml,%3Csvg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M10 10 L90 10 M10 50 L90 50 M10 90 L90 90 M10 10 L10 90 M50 10 L50 90 M90 10 L90 90" stroke="%2338bdf8" stroke-opacity="0.05" stroke-width="0.5"/%3E%3C/svg%3E')] opacity-30"></div>
+            </div>
+        </section>
 
-            <div class="bg-slate-950 border border-cyan-500/40 rounded-2xl p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center shadow-2xl">
+        <!-- ========== HISTORIA ========== -->
+        <section id="historia" class="space-y-6">
+            <div class="text-center">
+                <span class="text-[10px] sm:text-xs font-mono text-cyan-400 uppercase tracking-widest">Nuestra Historia</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-white">De la academia al mercado</h2>
+                <p class="text-slate-400 text-sm max-w-2xl mx-auto">MasterTech SpA nace en mayo de 2026 con el propósito de democratizar la inteligencia artificial aplicada al software empresarial.</p>
+            </div>
+            <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-5 sm:p-8 grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
                 <div class="space-y-4">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono">
-                        <i class="fa-solid fa-check-circle"></i> FUNCIONAL Y DESPLEGADO
-                    </div>
-                    <h3 class="text-2xl font-bold text-white">Orquestación de Tráfico Layer 7</h3>
-                    <p class="text-slate-300 text-sm leading-relaxed">
-                        Desarrollado para eliminar puntos únicos de fallo en arquitecturas distribuidas. Utiliza Nginx como Reverse Proxy con algoritmo Least Connections, protección contra ataques mediante Rate Limiting y respuesta en 1ms.
-                    </p>
-
-                    <div class="grid grid-cols-2 gap-4 font-mono text-xs pt-2">
-                        <div class="p-3 bg-slate-900 border border-slate-800 rounded-lg">
-                            <span class="text-slate-400 block">VALOR ESTIMADO</span>
-                            <span class="text-cyan-400 font-bold text-base">$3.500 - $5.000 USD</span>
-                        </div>
-                        <div class="p-3 bg-slate-900 border border-slate-800 rounded-lg">
-                            <span class="text-slate-400 block">TIEMPO DESARROLLO</span>
-                            <span class="text-indigo-400 font-bold text-base">3 a 5 Días</span>
+                    <div class="flex items-start gap-3">
+                        <span class="text-cyan-400 font-bold text-xl">01</span>
+                        <div>
+                            <h3 class="font-bold text-white">Fundación y propósito</h3>
+                            <p class="text-slate-400 text-sm">MasterTech SpA fue fundada por Andrés Olguín, ingeniero informático de la región de Valparaíso, con formación en algoritmos, estructuras de datos, paradigmas de programación, ingeniería de software, bases de datos, minería de datos, inteligencia artificial y computación de alto desempeño. La empresa nace para tender un puente entre la investigación académica y las necesidades tecnológicas de las empresas.</p>
                         </div>
                     </div>
-
-                    <div class="flex flex-wrap gap-3 pt-2 font-mono text-xs">
-                        <a href="https://github.com/andres-olguin/nexus-gateway" target="_blank" class="px-4 py-2 bg-slate-900 hover:bg-slate-800 border border-slate-700 text-white rounded font-bold transition flex items-center gap-2">
-                            <i class="fa-brands fa-github"></i> Ver Código en GitHub
-                        </a>
-                        <a href="#api-sandbox" class="px-4 py-2 bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-500/40 text-cyan-300 rounded font-bold transition flex items-center gap-2">
-                            <i class="fa-solid fa-bolt"></i> Probar en Vivo
-                        </a>
+                    <div class="flex items-start gap-3">
+                        <span class="text-indigo-400 font-bold text-xl">02</span>
+                        <div>
+                            <h3 class="font-bold text-white">Visión a futuro</h3>
+                            <p class="text-slate-400 text-sm">Ser la empresa de tecnología más influyente de Latinoamérica, reconocida por fusionar desarrollo de clase mundial con inteligencia artificial ética y accesible. Queremos impactar a 1.000 empresas para 2030 y convertirnos en un referente en innovación y transferencia tecnológica.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="text-emerald-400 font-bold text-xl">03</span>
+                        <div>
+                            <h3 class="font-bold text-white">Nuestro propósito</h3>
+                            <p class="text-slate-400 text-sm">Democratizar la IA y la ingeniería de software de alto nivel: que cualquier empresa, sin importar su tamaño, pueda aprovechar el poder de los datos, el machine learning y las arquitecturas modernas para tomar decisiones más inteligentes y automatizar procesos clave.</p>
+                        </div>
                     </div>
                 </div>
-
-                <!-- Representación del Dashboard del Proyecto -->
-                <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 font-mono text-xs space-y-4">
-                    <div class="flex justify-between items-center border-b border-slate-800 pb-3">
-                        <span class="text-cyan-400 font-bold">NEXUS TELEMETRY MONITOR</span>
-                        <span class="px-2 py-0.5 bg-emerald-500/20 text-emerald-400 rounded text-[10px]">CLUSTER ACTIVE</span>
-                    </div>
-
-                    <div class="grid grid-cols-3 gap-2 text-center">
-                        <div class="p-2 bg-slate-950 border border-slate-800 rounded">
-                            <span class="text-[10px] text-slate-500 block">NODO 01</span>
-                            <span class="text-emerald-400 font-bold">ONLINE</span>
-                        </div>
-                        <div class="p-2 bg-slate-950 border border-slate-800 rounded">
-                            <span class="text-[10px] text-slate-500 block">NODO 02</span>
-                            <span class="text-emerald-400 font-bold">ONLINE</span>
-                        </div>
-                        <div class="p-2 bg-slate-950 border border-slate-800 rounded">
-                            <span class="text-[10px] text-slate-500 block">NODO 03 (BK)</span>
-                            <span class="text-emerald-400 font-bold">ONLINE</span>
-                        </div>
-                    </div>
-
-                    <div class="p-3 bg-slate-950 border border-slate-800 rounded text-slate-400">
-                        <span class="text-slate-500 text-[10px] block">// Algoritmo de Balanceo:</span>
-                        <span class="text-cyan-300">least_conn; max_fails=2 fail_timeout=3s;</span>
-                    </div>
+                <div class="bg-slate-950 border border-slate-800 rounded-xl p-5 sm:p-6 flex flex-col justify-center items-center text-center">
+                    <i class="fa-regular fa-compass text-5xl sm:text-6xl text-cyan-400 mb-4"></i>
+                    <h4 class="text-lg sm:text-xl font-bold text-white">Hacia dónde vamos</h4>
+                    <p class="text-slate-400 text-sm">En los próximos 5 años, MasterTech SpA planea expandirse a mercados internacionales, desarrollar su propio framework de IA para aplicaciones web, y formar una comunidad de más de 10.000 desarrolladores en América Latina.</p>
+                    <div class="mt-4 text-[10px] sm:text-xs text-slate-500">Fundada: mayo 2026 · Viña del Mar, Chile</div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- FUNCIONALIDAD 1: Analizador Neural de Código REAL -->
-    <section id="neural-engine" class="py-16 px-4 sm:px-8 max-w-5xl mx-auto w-full">
-        <div class="text-center mb-8 space-y-2">
-            <span class="text-xs font-mono text-cyan-400 uppercase tracking-widest">// HERRAMIENTA REAL EN VIVO //</span>
-            <h2 class="text-3xl font-extrabold text-white">Analizador de Sintaxis y Seguridad de Código</h2>
-            <p class="text-slate-400 text-sm">Pega tu código en JavaScript, Python o C++ para ejecutar una auditoría estática real de vulnerabilidades, memoria y estructura.</p>
-        </div>
-
-        <div class="bg-slate-900 border border-cyan-500/30 rounded-2xl p-6 shadow-2xl space-y-4 font-mono text-xs">
-            <div class="flex justify-between items-center mb-2">
-                <label class="text-slate-300">Editor de Entrada:</label>
-                <select id="code-lang" class="bg-slate-950 border border-slate-800 text-cyan-400 px-3 py-1 rounded focus:outline-none">
-                    <option value="javascript">JavaScript / Node.js</option>
-                    <option value="python">Python 3</option>
-                    <option value="cpp">C++ Enterprise</option>
-                </select>
+        <!-- ========== FILOSOFÍA ========== -->
+        <section id="filosofia" class="space-y-6">
+            <div class="text-center">
+                <span class="text-[10px] sm:text-xs font-mono text-cyan-400 uppercase tracking-widest">Nuestra Filosofía</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-white">Crear, Enseñar, Compartir</h2>
+                <p class="text-slate-400 text-sm max-w-2xl mx-auto">En MasterTech no solo desarrollamos software de élite; también formamos a la próxima generación de ingenieros y fomentamos una cultura de innovación continua.</p>
             </div>
-
-            <textarea id="code-input" rows="7" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-4 text-slate-200 focus:outline-none focus:border-cyan-500 transition text-xs font-mono" placeholder="// Pega tu código aquí para auditarlo en tiempo real..."></textarea>
-            
-            <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
-                <button id="analyze-btn" class="w-full sm:w-auto px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-lg transition shadow-lg shadow-indigo-600/30">
-                    <i class="fa-solid fa-microchip mr-2"></i> Auditar Código Real
-                </button>
-                <span id="analysis-status" class="text-slate-400 text-xs">Esperando entrada de código.</span>
-            </div>
-
-            <!-- Resultados Reales del Análisis -->
-            <div id="analysis-results" class="hidden space-y-4 pt-4 border-t border-slate-800">
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 text-center">
-                        <span class="block text-slate-400 text-[10px]">LÍNEAS EFECTIVAS</span>
-                        <span id="res-lines" class="text-xl font-bold text-cyan-400">0</span>
-                    </div>
-                    <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 text-center">
-                        <span class="block text-slate-400 text-[10px]">COMPLEJIDAD CICLOMÁTICA</span>
-                        <span id="res-complexity" class="text-xl font-bold text-amber-400">1</span>
-                    </div>
-                    <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 text-center">
-                        <span class="block text-slate-400 text-[10px]">SCORE SEGURIDAD</span>
-                        <span id="res-score" class="text-xl font-bold text-emerald-400">100/100</span>
-                    </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                <div class="p-5 sm:p-6 bg-slate-900/40 border border-slate-800 rounded-xl text-center">
+                    <i class="fa-solid fa-lightbulb text-3xl sm:text-4xl text-cyan-400 mb-3"></i>
+                    <h3 class="font-bold text-white text-base sm:text-lg">Innovación Constante</h3>
+                    <p class="text-slate-400 text-sm">Nunca dejamos de programar. Exploramos nuevas tecnologías, frameworks y paradigmas para mantenernos a la vanguardia.</p>
                 </div>
-
-                <div class="p-4 bg-slate-950 rounded-xl border border-slate-800">
-                    <span class="text-slate-400 text-[10px] block mb-2">// REPORTE DE AUDITORÍA Y OBSERVACIONES:</span>
-                    <ul id="res-findings" class="space-y-1.5 text-slate-300 text-xs">
-                        <!-- Se puebla dinámicamente -->
-                    </ul>
+                <div class="p-5 sm:p-6 bg-slate-900/40 border border-slate-800 rounded-xl text-center">
+                    <i class="fa-solid fa-chalkboard-user text-3xl sm:text-4xl text-indigo-400 mb-3"></i>
+                    <h3 class="font-bold text-white text-base sm:text-lg">Formación y Tutorías</h3>
+                    <p class="text-slate-400 text-sm">Damos clases, talleres y mentorías. Creemos que el conocimiento se multiplica cuando se comparte.</p>
+                </div>
+                <div class="p-5 sm:p-6 bg-slate-900/40 border border-slate-800 rounded-xl text-center">
+                    <i class="fa-solid fa-people-group text-3xl sm:text-4xl text-emerald-400 mb-3"></i>
+                    <h3 class="font-bold text-white text-base sm:text-lg">Comunidad Abierta</h3>
+                    <p class="text-slate-400 text-sm">MasterTech es una comunidad. Organizamos charlas, hackathones y eventos de networking.</p>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- FUNCIONALIDAD 2: API Gateway Real Tester -->
-    <section id="api-sandbox" class="py-16 bg-slate-900/50 border-y border-cyan-500/20 px-4 sm:px-8 w-full">
-        <div class="max-w-5xl mx-auto space-y-6">
-            <div class="text-center space-y-2">
-                <span class="text-xs font-mono text-cyan-400 uppercase tracking-widest">// CONEXIÓN DIRECTA //</span>
-                <h2 class="text-3xl font-extrabold text-white">Prueba HTTP al API Gateway</h2>
-                <p class="text-slate-400 text-sm">Ejecuta peticiones reales al endpoint del clúster local para verificar respuesta y tiempo de latencia.</p>
-            </div>
-
-            <div class="bg-slate-950 border border-cyan-500/40 rounded-2xl p-6 font-mono text-xs shadow-2xl space-y-4">
-                <div class="flex flex-col sm:flex-row justify-between items-center gap-4 pb-4 border-b border-slate-800">
+            <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-5 sm:p-6 mt-6">
+                <h4 class="text-center font-bold text-white text-lg sm:text-xl mb-4">Nuestro proceso creativo</h4>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 text-center text-[10px] sm:text-xs">
                     <div>
-                        <span class="text-slate-400 block mb-1">API Key Requerida:</span>
-                        <span id="api-key-display" class="text-cyan-400 font-bold bg-slate-900 px-3 py-1 rounded border border-cyan-500/30">nexus-secret-key-2026</span>
+                        <span class="block text-cyan-400 text-xl sm:text-2xl">01</span>
+                        <span class="block text-white font-bold">Escucha</span>
+                        <span class="text-slate-400">Entendemos las necesidades del cliente.</span>
                     </div>
-                    <button id="send-request-btn" class="px-6 py-2.5 bg-cyan-500 text-slate-950 font-bold rounded hover:bg-cyan-400 transition">
-                        <i class="fa-solid fa-paper-plane mr-2"></i> Enviar Request HTTP Real
+                    <div>
+                        <span class="block text-cyan-400 text-xl sm:text-2xl">02</span>
+                        <span class="block text-white font-bold">Diseño</span>
+                        <span class="text-slate-400">Arquitectura y prototipado.</span>
+                    </div>
+                    <div>
+                        <span class="block text-cyan-400 text-xl sm:text-2xl">03</span>
+                        <span class="block text-white font-bold">Construcción</span>
+                        <span class="text-slate-400">Desarrollo ágil y pruebas.</span>
+                    </div>
+                    <div>
+                        <span class="block text-cyan-400 text-xl sm:text-2xl">04</span>
+                        <span class="block text-white font-bold">Evolución</span>
+                        <span class="text-slate-400">Despliegue y mejora continua.</span>
+                    </div>
+                </div>
+                <p class="text-center text-slate-400 text-[10px] sm:text-xs mt-4">Cada proyecto es una oportunidad para aprender y enseñar. Nuestro código es abierto, nuestras lecciones son compartidas.</p>
+            </div>
+        </section>
+
+        <!-- ========== SERVICIOS ========== -->
+        <section id="servicios" class="space-y-8">
+            <div class="text-center">
+                <span class="text-[10px] sm:text-xs font-mono text-cyan-400 uppercase tracking-widest">Lo que hacemos</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-white">12 Especialidades</h2>
+                <p class="text-slate-400 text-sm max-w-2xl mx-auto">Cubrimos todas las áreas de la ingeniería informática moderna, desde el desarrollo web hasta la inteligencia artificial y los sistemas embebidos.</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+                <div class="p-4 sm:p-5 bg-slate-900/50 border border-slate-800 rounded-xl card-hover">
+                    <i class="fa-solid fa-laptop-code text-cyan-400 text-xl sm:text-2xl block mb-2 sm:mb-3"></i>
+                    <h4 class="text-sm font-bold text-white">Desarrollo Web & Móvil</h4>
+                    <p class="text-xs text-slate-400">React, Next.js, React Native, Node.js, Django, microservicios.</p>
+                    <p class="text-[10px] text-slate-500 mt-1">Basado en: Desarrollo Web y Móvil, Paradigmas de Programación.</p>
+                </div>
+                <div class="p-4 sm:p-5 bg-slate-900/50 border border-slate-800 rounded-xl card-hover">
+                    <i class="fa-solid fa-brain text-indigo-400 text-xl sm:text-2xl block mb-2 sm:mb-3"></i>
+                    <h4 class="text-sm font-bold text-white">IA & Machine Learning</h4>
+                    <p class="text-xs text-slate-400">PyTorch, TensorFlow, LLMs, visión computacional, NLP.</p>
+                    <p class="text-[10px] text-slate-500 mt-1">Basado en: Aprendizaje de Máquina, Fundamentos de IA.</p>
+                </div>
+                <div class="p-4 sm:p-5 bg-slate-900/50 border border-slate-800 rounded-xl card-hover">
+                    <i class="fa-solid fa-database text-amber-400 text-xl sm:text-2xl block mb-2 sm:mb-3"></i>
+                    <h4 class="text-sm font-bold text-white">Minería de Datos & BI</h4>
+                    <p class="text-xs text-slate-400">ETL, análisis predictivo, dashboards interactivos, ciencia de datos.</p>
+                    <p class="text-[10px] text-slate-500 mt-1">Basado en: Minería de Datos, Métodos Cuantitativos.</p>
+                </div>
+                <div class="p-4 sm:p-5 bg-slate-900/50 border border-slate-800 rounded-xl card-hover">
+                    <i class="fa-solid fa-shield-halved text-purple-400 text-xl sm:text-2xl block mb-2 sm:mb-3"></i>
+                    <h4 class="text-sm font-bold text-white">Ciberseguridad</h4>
+                    <p class="text-xs text-slate-400">Auditorías OWASP, cifrado, SecOps, API Gateways.</p>
+                    <p class="text-[10px] text-slate-500 mt-1">Basado en: Ciberseguridad, Infraestructura TI.</p>
+                </div>
+                <div class="p-4 sm:p-5 bg-slate-900/50 border border-slate-800 rounded-xl card-hover">
+                    <i class="fa-solid fa-server text-slate-400 text-xl sm:text-2xl block mb-2 sm:mb-3"></i>
+                    <h4 class="text-sm font-bold text-white">DevOps & Cloud</h4>
+                    <p class="text-xs text-slate-400">Docker, Kubernetes, Redis, Nginx, CI/CD.</p>
+                    <p class="text-[10px] text-slate-500 mt-1">Basado en: Infraestructura TI, Gestión de Transformación Digital.</p>
+                </div>
+                <div class="p-4 sm:p-5 bg-slate-900/50 border border-slate-800 rounded-xl card-hover">
+                    <i class="fa-solid fa-chart-line text-emerald-400 text-xl sm:text-2xl block mb-2 sm:mb-3"></i>
+                    <h4 class="text-sm font-bold text-white">FinTech</h4>
+                    <p class="text-xs text-slate-400">Motores HFT, procesamiento de pagos, banca digital.</p>
+                    <p class="text-[10px] text-slate-500 mt-1">Basado en: Administración Financiera de Proyectos, Optimización.</p>
+                </div>
+                <div class="p-4 sm:p-5 bg-slate-900/50 border border-slate-800 rounded-xl card-hover">
+                    <i class="fa-solid fa-dna text-emerald-400 text-xl sm:text-2xl block mb-2 sm:mb-3"></i>
+                    <h4 class="text-sm font-bold text-white">Informática Biomédica</h4>
+                    <p class="text-xs text-slate-400">HL7, DICOM, FHIR, análisis genómico.</p>
+                    <p class="text-[10px] text-slate-500 mt-1">Basado en: Física, Química, Análisis de Datos.</p>
+                </div>
+                <div class="p-4 sm:p-5 bg-slate-900/50 border border-slate-800 rounded-xl card-hover">
+                    <i class="fa-solid fa-scale-balanced text-amber-400 text-xl sm:text-2xl block mb-2 sm:mb-3"></i>
+                    <h4 class="text-sm font-bold text-white">Legal Tech</h4>
+                    <p class="text-xs text-slate-400">Smart Contracts, auditoría algorítmica.</p>
+                    <p class="text-[10px] text-slate-500 mt-1">Basado en: Compliance & Accountability, Taller de Transferencia Tecnológica.</p>
+                </div>
+                <div class="p-4 sm:p-5 bg-slate-900/50 border border-slate-800 rounded-xl card-hover">
+                    <i class="fa-solid fa-cubes text-pink-400 text-xl sm:text-2xl block mb-2 sm:mb-3"></i>
+                    <h4 class="text-sm font-bold text-white">Videojuegos & Gráfica 3D</h4>
+                    <p class="text-xs text-slate-400">WebGL, Three.js, motores de juego.</p>
+                    <p class="text-[10px] text-slate-500 mt-1">Basado en: Física, Mecánica, Algoritmos.</p>
+                </div>
+                <div class="p-4 sm:p-5 bg-slate-900/50 border border-slate-800 rounded-xl card-hover">
+                    <i class="fa-solid fa-graduation-cap text-blue-400 text-xl sm:text-2xl block mb-2 sm:mb-3"></i>
+                    <h4 class="text-sm font-bold text-white">EdTech</h4>
+                    <p class="text-xs text-slate-400">LMS adaptativo, contenidos interactivos.</p>
+                    <p class="text-[10px] text-slate-500 mt-1">Basado en: Gestión de Transformación Digital, Psicología del Aprendizaje.</p>
+                </div>
+                <div class="p-4 sm:p-5 bg-slate-900/50 border border-slate-800 rounded-xl card-hover">
+                    <i class="fa-solid fa-microchip text-orange-400 text-xl sm:text-2xl block mb-2 sm:mb-3"></i>
+                    <h4 class="text-sm font-bold text-white">IoT & Embebidos</h4>
+                    <p class="text-xs text-slate-400">ESP32, SCADA, sensores industriales.</p>
+                    <p class="text-[10px] text-slate-500 mt-1">Basado en: Electrónica, Sistemas Embebidos, Comunicaciones.</p>
+                </div>
+                <div class="p-4 sm:p-5 bg-slate-900/50 border border-slate-800 rounded-xl card-hover">
+                    <i class="fa-solid fa-head-side-virus text-rose-400 text-xl sm:text-2xl block mb-2 sm:mb-3"></i>
+                    <h4 class="text-sm font-bold text-white">Psicoinformática</h4>
+                    <p class="text-xs text-slate-400">Neuro-conductual, análisis de bioseñales.</p>
+                    <p class="text-[10px] text-slate-500 mt-1">Basado en: Modelado Matemático, IA, Procesamiento de Señales.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== PROYECTOS ========== -->
+        <section id="proyectos" class="space-y-6">
+            <div class="text-center">
+                <span class="text-[10px] sm:text-xs font-mono text-cyan-400 uppercase tracking-widest">Portafolio</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-white">12 Proyectos Activos</h2>
+                <p class="text-slate-400 text-sm">Cada proyecto muestra su valor de mercado y nuestro precio de lanzamiento especial.</p>
+            </div>
+            <div class="relative bg-slate-900/40 border border-slate-800 rounded-2xl p-4 sm:p-6 overflow-hidden min-h-[500px]">
+                <div id="projectSlides" class="relative"></div>
+                <div class="flex justify-center items-center gap-3 sm:gap-4 mt-4 sm:mt-6">
+                    <button id="prevProject" class="px-3 sm:px-4 py-1.5 sm:py-2 bg-slate-800 hover:bg-slate-700 rounded-lg text-white transition text-sm"><i class="fa-solid fa-chevron-left"></i></button>
+                    <div id="projectDots" class="flex gap-1.5 sm:gap-2"></div>
+                    <button id="nextProject" class="px-3 sm:px-4 py-1.5 sm:py-2 bg-slate-800 hover:bg-slate-700 rounded-lg text-white transition text-sm"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== RESEÑAS ========== -->
+        <section id="testimonios" class="space-y-6">
+            <div class="text-center">
+                <span class="text-[10px] sm:text-xs font-mono text-cyan-400 uppercase tracking-widest">Lo que dicen nuestros clientes</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-white">Reseñas y satisfacción</h2>
+                <p class="text-slate-400 text-sm">Opiniones reales de clientes que han confiado en MasterTech SpA.</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                <div class="testimonial-card p-4 sm:p-5 bg-slate-900/30 border border-slate-800 rounded-xl">
+                    <div class="flex items-center gap-1 sm:gap-2 text-emerald-400 text-[10px] sm:text-xs">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-slate-300 text-sm italic mt-2">"El equipo de MasterTech desarrolló nuestro gateway de microservicios en tiempo récord. La reducción de latencia fue increíble."</p>
+                    <div class="mt-3 text-xs">
+                        <span class="text-white font-bold">Carlos G.</span>
+                        <span class="text-slate-500">— CTO de Fintech Chile</span>
+                        <span class="block text-[10px] text-cyan-400">Proyecto: Nexus-Gateway</span>
+                    </div>
+                </div>
+                <div class="testimonial-card p-4 sm:p-5 bg-slate-900/30 border border-slate-800 rounded-xl">
+                    <div class="flex items-center gap-1 sm:gap-2 text-emerald-400 text-[10px] sm:text-xs">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-slate-300 text-sm italic mt-2">"La integración HL7 que hicieron para nuestra clínica nos ahorró horas de trabajo manual. Ahora los datos fluyen sin errores."</p>
+                    <div class="mt-3 text-xs">
+                        <span class="text-white font-bold">Dra. María F.</span>
+                        <span class="text-slate-500">— Directora de TI, Clínica SaludPlus</span>
+                        <span class="block text-[10px] text-cyan-400">Proyecto: MediChain HL7</span>
+                    </div>
+                </div>
+                <div class="testimonial-card p-4 sm:p-5 bg-slate-900/30 border border-slate-800 rounded-xl">
+                    <div class="flex items-center gap-1 sm:gap-2 text-emerald-400 text-[10px] sm:text-xs">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-slate-300 text-sm italic mt-2">"Gracias al motor de trading de MasterTech, hemos mejorado nuestras ejecuciones en un 15%. Es un cambio de juego."</p>
+                    <div class="mt-3 text-xs">
+                        <span class="text-white font-bold">Ricardo M.</span>
+                        <span class="text-slate-500">— Gerente de Inversiones, QuantFund</span>
+                        <span class="block text-[10px] text-cyan-400">Proyecto: HFT Engine</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== HERRAMIENTAS ========== -->
+        <section id="herramientas" class="space-y-6">
+            <div class="text-center">
+                <span class="text-[10px] sm:text-xs font-mono text-cyan-400 uppercase tracking-widest">Laboratorio</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-white">Herramientas para Desarrolladores</h2>
+                <p class="text-slate-400 text-sm">Herramientas interactivas que realmente analizan, generan y simulan.</p>
+            </div>
+            <div class="bg-slate-900/40 border border-slate-800 rounded-2xl overflow-hidden">
+                <div class="flex overflow-x-auto border-b border-slate-800 text-sm scrollbar-hide">
+                    <button data-tab="tab-analyzer" class="tab-btn active px-3 sm:px-4 py-2 sm:py-3 text-slate-400 hover:text-white font-medium transition whitespace-nowrap">Asistente</button>
+                    <button data-tab="tab-hl7" class="tab-btn px-3 sm:px-4 py-2 sm:py-3 text-slate-400 hover:text-white font-medium transition whitespace-nowrap">Visor HL7</button>
+                    <button data-tab="tab-solidity" class="tab-btn px-3 sm:px-4 py-2 sm:py-3 text-slate-400 hover:text-white font-medium transition whitespace-nowrap">Solidity</button>
+                    <button data-tab="tab-iot" class="tab-btn px-3 sm:px-4 py-2 sm:py-3 text-slate-400 hover:text-white font-medium transition whitespace-nowrap">IoT</button>
+                    <button data-tab="tab-ml" class="tab-btn px-3 sm:px-4 py-2 sm:py-3 text-slate-400 hover:text-white font-medium transition whitespace-nowrap">Explorador</button>
+                    <button data-tab="tab-api" class="tab-btn px-3 sm:px-4 py-2 sm:py-3 text-slate-400 hover:text-white font-medium transition whitespace-nowrap">API</button>
+                    <button data-tab="tab-converter" class="tab-btn px-3 sm:px-4 py-2 sm:py-3 text-slate-400 hover:text-white font-medium transition whitespace-nowrap">Convertidor</button>
+                    <button data-tab="tab-network" class="tab-btn px-3 sm:px-4 py-2 sm:py-3 text-slate-400 hover:text-white font-medium transition whitespace-nowrap">Red</button>
+                </div>
+
+                <!-- Asistente de Código -->
+                <div id="tab-analyzer" class="tab-content p-4 sm:p-6 space-y-4">
+                    <p class="text-xs text-slate-400">Pega tu código y obtén análisis detallado, sugerencias de mejora, detección de errores y ejemplos.</p>
+                    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                        <textarea id="codeInputAnalyzer" rows="6" class="flex-1 bg-slate-950 border border-slate-700 rounded-lg p-3 text-sm text-slate-200 focus:outline-none focus:border-cyan-500 font-mono" placeholder="// Pega tu código aquí...">printf("Hola mundo");</textarea>
+                        <button id="analyzeCodeBtn" class="px-5 sm:px-6 py-2 bg-indigo-500 hover:bg-indigo-400 text-white font-bold rounded-lg h-fit transition">Analizar</button>
+                    </div>
+                    <div id="analyzerOutput" class="code-analyzer-output text-slate-300">Esperando análisis...</div>
+                </div>
+
+                <!-- Visor HL7 -->
+                <div id="tab-hl7" class="tab-content hidden p-4 sm:p-6 space-y-4">
+                    <p class="text-xs text-slate-400">Pega una trama HL7 y extrae segmentos, valida estructura y muestra advertencias.</p>
+                    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                        <textarea id="hl7Input" rows="4" class="flex-1 bg-slate-950 border border-slate-700 rounded-lg p-3 text-sm text-slate-200 focus:outline-none focus:border-cyan-500 font-mono">MSH|^~\\&|HIS|HOSPITAL|PACS|RAD|20260803||ADT^A08|101|P|2.3
+PID|||123456||OLGUIN^ANDRES||20040101|M</textarea>
+                        <button id="parseHl7Btn" class="px-5 sm:px-6 py-2 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold rounded-lg h-fit transition">Parsear</button>
+                    </div>
+                    <div id="hl7Output" class="p-4 bg-slate-950 border border-slate-700 rounded-lg text-xs text-slate-300 min-h-[60px]">Los datos extraídos aparecerán aquí...</div>
+                </div>
+
+                <!-- Validador Solidity -->
+                <div id="tab-solidity" class="tab-content hidden p-4 sm:p-6 space-y-4">
+                    <p class="text-xs text-slate-400">Analiza contratos Solidity en busca de vulnerabilidades (reentrancy, overflow, tx.origin, etc.).</p>
+                    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                        <textarea id="solidityInput" rows="4" class="flex-1 bg-slate-950 border border-slate-700 rounded-lg p-3 text-sm text-slate-200 focus:outline-none focus:border-cyan-500 font-mono">pragma solidity ^0.8.0;
+contract Ejemplo {
+    uint public contador;
+    function incrementar() public { contador++; }
+}</textarea>
+                        <button id="validateSolidityBtn" class="px-5 sm:px-6 py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-lg h-fit transition">Validar</button>
+                    </div>
+                    <div id="solidityOutput" class="p-4 bg-slate-950 border border-slate-700 rounded-lg text-xs text-slate-300 min-h-[60px]">Resultado de la validación...</div>
+                </div>
+
+                <!-- Simulador IoT -->
+                <div id="tab-iot" class="tab-content hidden p-4 sm:p-6 space-y-4">
+                    <p class="text-xs text-slate-400">Simula lecturas de sensores y muestra un gráfico de barras en tiempo real.</p>
+                    <div class="flex flex-wrap gap-3 sm:gap-4 items-center">
+                        <button id="simulateSensorBtn" class="px-4 py-2 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold rounded-lg transition">Simular Lectura</button>
+                        <span id="sensorDataDisplay" class="text-slate-300 text-sm font-mono">Esperando simulación...</span>
+                    </div>
+                    <div id="iotChart" class="p-4 bg-slate-950 border border-slate-700 rounded-lg min-h-[100px]">Datos del sensor aparecerán aquí.</div>
+                    <div id="iotOutput" class="p-2 bg-slate-950 border border-slate-700 rounded-lg text-xs text-slate-300">Última lectura: --</div>
+                </div>
+
+                <!-- Explorador de Datos -->
+                <div id="tab-ml" class="tab-content hidden p-4 sm:p-6 space-y-4">
+                    <p class="text-xs text-slate-400">Sube datos CSV y obtén media, mediana, desviación, tendencia y más.</p>
+                    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                        <textarea id="dataInput" rows="3" class="flex-1 bg-slate-950 border border-slate-700 rounded-lg p-3 text-sm text-slate-200 focus:outline-none focus:border-cyan-500 font-mono" placeholder="fecha,ventas
+2026-01-01,100
+2026-01-02,120
+2026-01-03,110">fecha,ventas
+2026-01-01,100
+2026-01-02,120
+2026-01-03,110</textarea>
+                        <button id="analyzeDataBtn" class="px-5 sm:px-6 py-2 bg-purple-500 hover:bg-purple-400 text-white font-bold rounded-lg h-fit transition">Analizar</button>
+                    </div>
+                    <div id="dataOutput" class="p-4 bg-slate-950 border border-slate-700 rounded-lg text-xs text-slate-300 min-h-[60px]">Resultados del análisis...</div>
+                </div>
+
+                <!-- Generador API -->
+                <div id="tab-api" class="tab-content hidden p-4 sm:p-6 space-y-4">
+                    <p class="text-xs text-slate-400">Genera un esqueleto de API REST en Node.js/Express o Python/Flask.</p>
+                    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                        <select id="apiLang" class="bg-slate-950 border border-slate-700 rounded-lg p-3 text-white focus:outline-none focus:border-cyan-500">
+                            <option value="node">Node.js (Express)</option>
+                            <option value="python">Python (Flask)</option>
+                        </select>
+                        <button id="generateApiBtn" class="px-5 sm:px-6 py-2 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold rounded-lg h-fit transition">Generar</button>
+                    </div>
+                    <div id="apiOutput" class="code-analyzer-output text-slate-300">Código generado aparecerá aquí.</div>
+                </div>
+
+                <!-- Convertidor -->
+                <div id="tab-converter" class="tab-content hidden p-4 sm:p-6 space-y-4">
+                    <p class="text-xs text-slate-400">Traduce fragmentos de código entre Python, JavaScript y C++.</p>
+                    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                        <textarea id="convertInput" rows="4" class="flex-1 bg-slate-950 border border-slate-700 rounded-lg p-3 text-sm text-slate-200 focus:outline-none focus:border-cyan-500 font-mono" placeholder="Código fuente...">def suma(a, b): return a + b</textarea>
+                        <div class="flex flex-col gap-2 sm:min-w-[140px]">
+                            <select id="convertFrom" class="bg-slate-950 border border-slate-700 rounded-lg p-2 sm:p-3 text-white focus:outline-none focus:border-cyan-500">
+                                <option value="python">Python</option>
+                                <option value="javascript">JavaScript</option>
+                                <option value="cpp">C++</option>
+                            </select>
+                            <select id="convertTo" class="bg-slate-950 border border-slate-700 rounded-lg p-2 sm:p-3 text-white focus:outline-none focus:border-cyan-500">
+                                <option value="python">Python</option>
+                                <option value="javascript" selected>JavaScript</option>
+                                <option value="cpp">C++</option>
+                            </select>
+                            <button id="convertBtn" class="px-4 py-2 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold rounded-lg transition">Convertir</button>
+                        </div>
+                    </div>
+                    <div id="convertOutput" class="code-analyzer-output text-slate-300">Código convertido aparecerá aquí.</div>
+                </div>
+
+                <!-- Analizador de Red -->
+                <div id="tab-network" class="tab-content hidden p-4 sm:p-6 space-y-4">
+                    <p class="text-xs text-slate-400">Simula un escaneo de puertos en un rango determinado y muestra resultados.</p>
+                    <div class="flex flex-wrap gap-2 sm:gap-4 items-center">
+                        <input type="text" id="ipInput" value="192.168.1.1" class="bg-slate-950 border border-slate-700 rounded-lg p-2 sm:p-3 text-white focus:outline-none focus:border-cyan-500 w-32 sm:w-40" placeholder="IP">
+                        <input type="number" id="portStart" value="20" class="bg-slate-950 border border-slate-700 rounded-lg p-2 sm:p-3 text-white focus:outline-none focus:border-cyan-500 w-16 sm:w-20" placeholder="Desde">
+                        <input type="number" id="portEnd" value="25" class="bg-slate-950 border border-slate-700 rounded-lg p-2 sm:p-3 text-white focus:outline-none focus:border-cyan-500 w-16 sm:w-20" placeholder="Hasta">
+                        <button id="scanNetworkBtn" class="px-4 sm:px-6 py-2 bg-rose-500 hover:bg-rose-400 text-white font-bold rounded-lg h-fit transition">Escanear</button>
+                    </div>
+                    <div id="networkOutput" class="p-4 bg-slate-950 border border-slate-700 rounded-lg text-xs text-slate-300 min-h-[60px]">Resultados del escaneo...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== FAQ ========== -->
+        <section id="faq" class="space-y-6">
+            <div class="text-center">
+                <span class="text-[10px] sm:text-xs font-mono text-cyan-400 uppercase tracking-widest">Preguntas Frecuentes</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-white">Resolvemos tus dudas</h2>
+                <p class="text-slate-400 text-sm">Respuestas a las preguntas más comunes sobre nuestros servicios y proceso.</p>
+            </div>
+            <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-4 sm:p-6">
+                <div class="faq-item active">
+                    <div class="faq-question">¿Cómo funciona el proceso de desarrollo?</div>
+                    <div class="faq-answer">Comenzamos con una reunión de descubrimiento para entender tus necesidades, luego diseñamos la solución, la desarrollamos en iteraciones ágiles (sprints) y finalmente la desplegamos con soporte continuo.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">¿Qué tecnologías utilizan?</div>
+                    <div class="faq-answer">Usamos un stack moderno: React, Next.js, Node.js, Python, Django, TensorFlow, Docker, Kubernetes y más. Elegimos la tecnología que mejor se adapte a cada proyecto.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">¿Pueden integrar IA en mi proyecto existente?</div>
+                    <div class="faq-answer">Sí, podemos añadir capacidades de IA a sistemas existentes, ya sea mediante APIs, modelos personalizados o análisis de datos.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">¿Ofrecen servicios de formación?</div>
+                    <div class="faq-answer">Sí, damos talleres, tutorías y cursos personalizados en programación, IA, ciberseguridad y más. Contáctanos para más detalles.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">¿Cuánto cuesta un proyecto típico?</div>
+                    <div class="faq-answer">Los precios varían según el alcance. Nuestro cotizador te da una estimación inicial, pero trabajamos contigo para ajustar el presupuesto a tus necesidades.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== COMUNIDAD ========== -->
+        <section id="comunidad" class="space-y-6">
+            <div class="text-center">
+                <span class="text-[10px] sm:text-xs font-mono text-cyan-400 uppercase tracking-widest">Comunidad</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-white">Conéctate con la Red MasterTech</h2>
+                <p class="text-slate-400 text-sm">Forma parte de nuestra comunidad de desarrolladores, ingenieros y empresas. Participa en charlas, talleres y hackatones.</p>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-3">
+                <a href="https://chat.whatsapp.com/Evf083iFH4DC63WTHjLsQu" target="_blank" class="p-3 sm:p-4 bg-slate-900/50 border border-slate-800 rounded-xl hover:border-emerald-500/50 transition text-center group">
+                    <i class="fa-brands fa-whatsapp text-xl sm:text-2xl text-emerald-400 block mb-1 group-hover:scale-110 transition"></i>
+                    <span class="text-[10px] sm:text-xs font-bold text-white">Grupo WA</span>
+                </a>
+                <a href="https://discord.gg/X4NXGa4D4" target="_blank" class="p-3 sm:p-4 bg-slate-900/50 border border-slate-800 rounded-xl hover:border-indigo-500/50 transition text-center group">
+                    <i class="fa-brands fa-discord text-xl sm:text-2xl text-indigo-400 block mb-1 group-hover:scale-110 transition"></i>
+                    <span class="text-[10px] sm:text-xs font-bold text-white">Discord</span>
+                </a>
+                <a href="https://github.com/andres-olguin" target="_blank" class="p-3 sm:p-4 bg-slate-900/50 border border-slate-800 rounded-xl hover:border-white/50 transition text-center group">
+                    <i class="fa-brands fa-github text-xl sm:text-2xl text-slate-300 block mb-1 group-hover:scale-110 transition"></i>
+                    <span class="text-[10px] sm:text-xs font-bold text-white">GitHub</span>
+                </a>
+                <a href="https://www.linkedin.com/in/andr%C3%A9s-olguin-a9b3aa350/" target="_blank" class="p-3 sm:p-4 bg-slate-900/50 border border-slate-800 rounded-xl hover:border-cyan-500/50 transition text-center group">
+                    <i class="fa-brands fa-linkedin text-xl sm:text-2xl text-cyan-400 block mb-1 group-hover:scale-110 transition"></i>
+                    <span class="text-[10px] sm:text-xs font-bold text-white">LinkedIn</span>
+                </a>
+                <a href="https://x.com/MasterTechgroup" target="_blank" class="p-3 sm:p-4 bg-slate-900/50 border border-slate-800 rounded-xl hover:border-white/50 transition text-center group">
+                    <i class="fa-brands fa-x-twitter text-xl sm:text-2xl text-slate-300 block mb-1 group-hover:scale-110 transition"></i>
+                    <span class="text-[10px] sm:text-xs font-bold text-white">X</span>
+                </a>
+                <a href="https://www.instagram.com/mastertechspa/" target="_blank" class="p-3 sm:p-4 bg-slate-900/50 border border-slate-800 rounded-xl hover:border-pink-500/50 transition text-center group">
+                    <i class="fa-brands fa-instagram text-xl sm:text-2xl text-pink-400 block mb-1 group-hover:scale-110 transition"></i>
+                    <span class="text-[10px] sm:text-xs font-bold text-white">Instagram</span>
+                </a>
+                <a href="https://www.threads.net/@mastertechspa" target="_blank" class="p-3 sm:p-4 bg-slate-900/50 border border-slate-800 rounded-xl hover:border-white/50 transition text-center group">
+                    <i class="fa-brands fa-threads text-xl sm:text-2xl text-slate-300 block mb-1 group-hover:scale-110 transition"></i>
+                    <span class="text-[10px] sm:text-xs font-bold text-white">Threads</span>
+                </a>
+                <a href="https://www.tiktok.com/@mastertechoficial00" target="_blank" class="p-3 sm:p-4 bg-slate-900/50 border border-slate-800 rounded-xl hover:border-cyan-300/50 transition text-center group">
+                    <i class="fa-brands fa-tiktok text-xl sm:text-2xl text-slate-300 block mb-1 group-hover:scale-110 transition"></i>
+                    <span class="text-[10px] sm:text-xs font-bold text-white">TikTok</span>
+                </a>
+                <a href="https://www.youtube.com/@MasterTechSPA" target="_blank" class="p-3 sm:p-4 bg-slate-900/50 border border-slate-800 rounded-xl hover:border-red-500/50 transition text-center group">
+                    <i class="fa-brands fa-youtube text-xl sm:text-2xl text-red-400 block mb-1 group-hover:scale-110 transition"></i>
+                    <span class="text-[10px] sm:text-xs font-bold text-white">YouTube</span>
+                </a>
+                <a href="https://facebook.com/profile.php?id=61592311520660" target="_blank" class="p-3 sm:p-4 bg-slate-900/50 border border-slate-800 rounded-xl hover:border-blue-500/50 transition text-center group">
+                    <i class="fa-brands fa-facebook text-xl sm:text-2xl text-blue-400 block mb-1 group-hover:scale-110 transition"></i>
+                    <span class="text-[10px] sm:text-xs font-bold text-white">Facebook</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- ========== COTIZADOR ========== -->
+        <section id="cotizador" class="space-y-6">
+            <div class="text-center">
+                <span class="text-[10px] sm:text-xs font-mono text-cyan-400 uppercase tracking-widest">Presupuestos</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-white">Cotizador de Proyectos</h2>
+                <p class="text-slate-400 text-sm">Elige el tipo de desarrollo y obtén una estimación personalizada.</p>
+            </div>
+            <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-slate-400 text-xs mb-1">Tipo de Desarrollo</label>
+                        <select id="cfgTipo" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2 sm:p-3 text-white focus:outline-none focus:border-cyan-500">
+                            <option value="web">Aplicación Web (SaaS)</option>
+                            <option value="mobile">App Móvil (iOS/Android)</option>
+                            <option value="full">Sistema Integral (Web + Móvil + API)</option>
+                            <option value="ai">Motor de IA / ML</option>
+                            <option value="datamine">Minería de Datos / BI</option>
+                            <option value="cyber">Auditoría de Ciberseguridad</option>
+                            <option value="devops">Infraestructura DevOps / Cloud</option>
+                            <option value="fintech">Sistema FinTech / Trading</option>
+                            <option value="biomed">Integración Biomédica (HL7/FHIR)</option>
+                            <option value="legal">Smart Contracts / Legal Tech</option>
+                            <option value="gamedev">Videojuego / Gráfica 3D</option>
+                            <option value="edtech">Plataforma EdTech / LMS</option>
+                            <option value="iot">Sistema IoT / Embebidos</option>
+                            <option value="psycho">Psicoinformática / Neuro</option>
+                            <option value="consulting">Consultoría en Transformación Digital</option>
+                            <option value="migration">Migración de Sistemas Legacy</option>
+                            <option value="optimization">Optimización de Algoritmos</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-slate-400 text-xs mb-1">Nivel de Seguridad</label>
+                        <select id="cfgSeg" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2 sm:p-3 text-white focus:outline-none focus:border-cyan-500">
+                            <option value="std">Estándar (SSL, Firewall)</option>
+                            <option value="adv">Avanzado (WAF, Rate Limiting, Cifrado)</option>
+                            <option value="enterprise">Enterprise (ISO 27001, SOC2)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-slate-400 text-xs mb-1">Integración con IA</label>
+                        <select id="cfgIa" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2 sm:p-3 text-white focus:outline-none focus:border-cyan-500">
+                            <option value="no">Sin IA</option>
+                            <option value="llm">Chatbot / LLM</option>
+                            <option value="custom">Modelo Personalizado</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-slate-400 text-xs mb-1">Moneda</label>
+                        <select id="currencySelector" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2 sm:p-3 text-white focus:outline-none focus:border-cyan-500">
+                            <option value="USD">USD - Dólar estadounidense</option>
+                            <option value="EUR">EUR - Euro</option>
+                            <option value="GBP">GBP - Libra esterlina</option>
+                            <option value="CLP">CLP - Peso chileno</option>
+                            <option value="BRL">BRL - Real brasileño</option>
+                            <option value="MXN">MXN - Peso mexicano</option>
+                            <option value="COP">COP - Peso colombiano</option>
+                            <option value="ARS">ARS - Peso argentino</option>
+                            <option value="PEN">PEN - Sol peruano</option>
+                            <option value="JPY">JPY - Yen japonés</option>
+                            <option value="CNY">CNY - Yuan chino</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="bg-slate-950 border border-slate-800 rounded-xl p-4 sm:p-6 flex flex-col justify-center text-center">
+                    <span class="text-[10px] sm:text-xs text-slate-400 uppercase tracking-widest">Presupuesto Estimado</span>
+                    <div class="my-2">
+                        <span id="precioFinal" class="text-3xl sm:text-4xl font-bold text-cyan-400">$1.500 USD</span>
+                        <span id="precioDesglose" class="block text-[10px] sm:text-xs text-slate-500 mt-1">(Desglose: $800 desarrollo + $400 IA + $300 seguridad)</span>
+                    </div>
+                    <span id="tiempoFinal" class="text-sm text-slate-300">Plazo: 3 a 5 semanas</span>
+                    <button onclick="enviarCotizacion()" class="mt-4 w-full py-2.5 sm:py-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold rounded-lg transition flex items-center justify-center gap-2 text-sm sm:text-base">
+                        <i class="fa-brands fa-whatsapp"></i> Solicitar por WhatsApp
                     </button>
-                </div>
-
-                <div id="api-response-output" class="p-4 bg-slate-900 rounded border border-slate-800 text-slate-300 overflow-x-auto text-[11px]">
-                    <pre>// Presiona "Enviar Request HTTP Real" para consultar http://localhost/api/v1/data...</pre>
+                    <p class="text-[10px] text-slate-600 mt-2">* Los precios son estimados y pueden variar según requerimientos específicos.</p>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- DESCARGAS DIRECTAS DE ARCHIVOS POR ÁREA -->
-    <section id="downloads" class="py-16 px-4 sm:px-8 max-w-7xl mx-auto w-full">
-        <div class="text-center mb-8 space-y-2">
-            <span class="text-xs font-mono text-cyan-400 uppercase tracking-widest">// CÓDIGO FUENTE DESCARGABLE //</span>
-            <h2 class="text-3xl font-extrabold text-white">Recursos y Módulos de Código Real</h2>
-            <p class="text-slate-400 text-sm">Descarga los archivos creados por MasterTech SpA para cada una de las especialidades.</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 font-mono text-xs">
-            <div class="p-4 bg-slate-950 border border-slate-800 rounded-xl space-y-3">
-                <span class="text-emerald-400 font-bold block">Biomédica (Python)</span>
-                <p class="text-slate-400 text-[10px]">Parser de tramas HL7/FHIR e imágenes médicas DICOM.</p>
-                <a href="downloads/dicom-viewer-sample.py" download class="block text-center py-2 bg-slate-900 border border-slate-700 text-white rounded font-bold hover:bg-slate-800">
-                    <i class="fa-solid fa-download mr-1"></i> Descargar .PY
-                </a>
+            <!-- Mensaje adicional: contacto -->
+            <div class="contact-banner">
+                <i class="fa-regular fa-message text-cyan-400 mr-2"></i>
+                <span>¿Tienes una propuesta de proyecto diferente? </span>
+                <a href="mailto:contacto@mastertechg.com">Escríbenos a contacto@mastertechg.com</a>
+                <span> o </span>
+                <a href="https://wa.me/56992947393" target="_blank">contáctanos por WhatsApp</a>
+                <span> y crearemos una solución a tu medida.</span>
             </div>
+        </section>
 
-            <div class="p-4 bg-slate-950 border border-slate-800 rounded-xl space-y-3">
-                <span class="text-amber-400 font-bold block">Jurídica / Legal (Solidity)</span>
-                <p class="text-slate-400 text-[10px]">Smart Contract para registro y trazabilidad legal de contratos.</p>
-                <a href="downloads/smart-contract-audit.sol" download class="block text-center py-2 bg-slate-900 border border-slate-700 text-white rounded font-bold hover:bg-slate-800">
-                    <i class="fa-solid fa-download mr-1"></i> Descargar .SOL
-                </a>
+        <!-- ========== BLOG ========== -->
+        <section id="blog" class="space-y-6">
+            <div class="text-center">
+                <span class="text-[10px] sm:text-xs font-mono text-cyan-400 uppercase tracking-widest">Blog</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-white">Últimas publicaciones</h2>
+                <p class="text-slate-400 text-sm">Noticias, tutoriales y reflexiones sobre tecnología.</p>
             </div>
-
-            <div class="p-4 bg-slate-950 border border-slate-800 rounded-xl space-y-3">
-                <span class="text-cyan-400 font-bold block">FinTech HFT (C++)</span>
-                <p class="text-slate-400 text-[10px]">Motor de calce de órdenes financieras de ultra baja latencia.</p>
-                <a href="downloads/hft-trading-kernel.cpp" download class="block text-center py-2 bg-slate-900 border border-slate-700 text-white rounded font-bold hover:bg-slate-800">
-                    <i class="fa-solid fa-download mr-1"></i> Descargar .CPP
-                </a>
-            </div>
-
-            <div class="p-4 bg-slate-950 border border-slate-800 rounded-xl space-y-3">
-                <span class="text-orange-400 font-bold block">IoT & AgTech (C/ESP32)</span>
-                <p class="text-slate-400 text-[10px]">Firmware embebido para telemetría de suelos y control industrial.</p>
-                <a href="downloads/esp32-scada-firmware.c" download class="block text-center py-2 bg-slate-900 border border-slate-700 text-white rounded font-bold hover:bg-slate-800">
-                    <i class="fa-solid fa-download mr-1"></i> Descargar .C
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- FUNCIONALIDAD 3: Cotizador de Arquitectura -->
-    <section id="configurator" class="py-16 px-4 sm:px-8 max-w-5xl mx-auto w-full">
-        <div class="text-center mb-8 space-y-2">
-            <span class="text-xs font-mono text-cyan-400 uppercase tracking-widest">// COTIZADOR //</span>
-            <h2 class="text-3xl font-extrabold text-white">Calculadora de Proyectos Informáticos</h2>
-            <p class="text-slate-400 text-sm">Configura la infraestructura y obtén una estimación de presupuesto y tiempo de entrega real.</p>
-        </div>
-
-        <div class="bg-slate-950 border border-cyan-500/40 rounded-2xl p-6 sm:p-8 shadow-2xl grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div class="space-y-4 font-mono text-xs">
-                <div>
-                    <label class="block text-slate-400 mb-1.5">Arquitectura de Software:</label>
-                    <select id="cfg-dev" class="w-full bg-slate-900 border border-slate-800 rounded-lg p-3 text-white focus:outline-none focus:border-cyan-500">
-                        <option value="web">Web Enterprise (Next.js / Node.js Cluster)</option>
-                        <option value="mobile">App Móvil Multiplataforma</option>
-                        <option value="full">Sistema Completo (Web + App + API Gateway)</option>
-                    </select>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                <div class="blog-card">
+                    <span class="text-[10px] text-cyan-400">15/08/2026</span>
+                    <h4 class="font-bold text-white mt-1">Cómo integrar IA en tu aplicación web sin complicaciones</h4>
+                    <p class="text-slate-400 text-sm mt-2">Guía paso a paso para añadir capacidades de machine learning a tu proyecto con APIs y modelos preentrenados.</p>
+                    <a href="#" class="text-cyan-400 text-xs hover:underline mt-2 inline-block">Leer más →</a>
                 </div>
-
-                <div>
-                    <label class="block text-slate-400 mb-1.5">Módulo de Inteligencia Artificial:</label>
-                    <select id="cfg-ai" class="w-full bg-slate-900 border border-slate-800 rounded-lg p-3 text-white focus:outline-none focus:border-cyan-500">
-                        <option value="none">Sin Integración de IA</option>
-                        <option value="llm">Agente/Chatbot Autónomo con LLMs</option>
-                        <option value="custom">Motor Neuronal / Analizador de Datos</option>
-                    </select>
+                <div class="blog-card">
+                    <span class="text-[10px] text-cyan-400">22/07/2026</span>
+                    <h4 class="font-bold text-white mt-1">Top 5 lenguajes de programación para 2027</h4>
+                    <p class="text-slate-400 text-sm mt-2">Análisis de tendencias y predicciones sobre los lenguajes que dominarán el mercado laboral.</p>
+                    <a href="#" class="text-cyan-400 text-xs hover:underline mt-2 inline-block">Leer más →</a>
                 </div>
-
-                <div>
-                    <label class="block text-slate-400 mb-1.5">Nivel de Ciberseguridad & Infraestructura:</label>
-                    <select id="cfg-sec" class="w-full bg-slate-900 border border-slate-800 rounded-lg p-3 text-white focus:outline-none focus:border-cyan-500">
-                        <option value="standard">Estándar (SSL/TLS + Firewall Básico)</option>
-                        <option value="advanced">Enterprise (Gateway Failover + Rate Limiting + AES-256)</option>
-                    </select>
+                <div class="blog-card">
+                    <span class="text-[10px] text-cyan-400">10/07/2026</span>
+                    <h4 class="font-bold text-white mt-1">MasterTech lanza su programa de mentorías gratuito</h4>
+                    <p class="text-slate-400 text-sm mt-2">Iniciativa para apoyar a estudiantes y profesionales que quieran adentrarse en el mundo de la IA y el desarrollo.</p>
+                    <a href="#" class="text-cyan-400 text-xs hover:underline mt-2 inline-block">Leer más →</a>
                 </div>
             </div>
+        </section>
 
-            <div class="p-6 bg-slate-900 rounded-2xl border border-cyan-500/30 font-mono text-center space-y-4">
-                <span class="text-xs text-slate-400 block uppercase">Presupuesto Estimado</span>
-                <div id="cfg-price" class="text-3xl font-black text-cyan-400">$1.500 USD</div>
-                <p id="cfg-time" class="text-xs text-slate-300">Tiempo estimado: 2 a 4 semanas</p>
-                
-                <button id="contact-wa-btn" class="w-full py-3.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold rounded-lg transition text-xs flex items-center justify-center gap-2">
-                    <i class="fa-brands fa-whatsapp text-base"></i> Enviar Cotización por WhatsApp
-                </button>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="border-t border-slate-800 bg-slate-950 mt-16 sm:mt-20 py-6 sm:py-8 px-3 sm:px-6 text-[10px] sm:text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4">
+            <div class="text-center sm:text-left">
+                <span class="text-white font-bold">MasterTech SpA</span>
+                <span class="block">Sociedad por Acciones · RUT: 77.XXX.XXX-X</span>
             </div>
-        </div>
-    </section>
-
-    <!-- Footer Corporativo -->
-    <footer class="bg-slate-950 border-t border-slate-900 py-12 px-4 sm:px-8 text-slate-400 text-xs font-mono w-full">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
-            <div>
-                <span class="font-bold text-slate-200 text-sm block">MasterTech SpA</span>
-                <span class="text-slate-500">Sociedad por Acciones - Ingeniería Informática</span>
+            <div class="flex gap-4 sm:gap-6">
+                <a href="#" class="hover:text-cyan-400">Privacidad</a>
+                <a href="#" class="hover:text-cyan-400">Términos</a>
+                <a href="mailto:contacto@mastertechg.com" class="hover:text-cyan-400">Contacto</a>
             </div>
-
-            <div class="flex flex-wrap justify-center gap-4 text-slate-300">
-                <a href="https://wa.me/56992947393" target="_blank" class="hover:text-emerald-400"><i class="fa-brands fa-whatsapp mr-1"></i> WhatsApp</a>
-                <a href="https://discord.gg/TU-SERVER" target="_blank" class="hover:text-indigo-400"><i class="fa-brands fa-discord mr-1"></i> Discord</a>
-                <a href="https://github.com/andres-olguin" target="_blank" class="hover:text-white"><i class="fa-brands fa-github mr-1"></i> GitHub</a>
-                <a href="https://www.linkedin.com/in/andr%C3%A9s-olguin-a9b3aa350/" target="_blank" class="hover:text-cyan-400"><i class="fa-brands fa-linkedin mr-1"></i> LinkedIn</a>
-            </div>
-
-            <p>© 2026 MasterTech SpA. Todos los derechos reservados.</p>
+            <span>© 2026 MasterTech SpA</span>
         </div>
     </footer>
 
-    <!-- LÓGICA TÉCNICA REAL EN JAVASCRIPT -->
-    <script>
-        // 1. ANALIZADOR ESTÁTICO DE CÓDIGO REAL
-        const analyzeBtn = document.getElementById('analyze-btn');
-        const codeInput = document.getElementById('code-input');
-        const codeLang = document.getElementById('code-lang');
-        const analysisStatus = document.getElementById('analysis-status');
-        const analysisResults = document.getElementById('analysis-results');
-        const resLines = document.getElementById('res-lines');
-        const resComplexity = document.getElementById('res-complexity');
-        const resScore = document.getElementById('res-score');
-        const resFindings = document.getElementById('res-findings');
+    <!-- ===== SCRIPTS ===== -->
+    <!-- Carga global de Google Translate (ligera, solo define la función) -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'es',
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-        analyzeBtn.addEventListener('click', () => {
-            const code = codeInput.value.trim();
-            if (!code) {
-                analysisStatus.textContent = "Por favor, ingresa un bloque de código para analizar.";
-                analysisStatus.className = "text-rose-400 text-xs";
+    <!-- Lógica principal: traductor moderno y resto de funcionalidades -->
+    <script>
+        // ============================================================
+        // 1. TRADUCTOR - toggle del widget y sincronización con selector custom
+        // ============================================================
+        const translateBtn = document.getElementById('translateToggleFloating');
+        const translateWidget = document.getElementById('google_translate_widget');
+        const customSelect = document.getElementById('customTranslateSelect');
+
+        translateBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const isVisible = translateWidget.style.display === 'block';
+            translateWidget.style.display = isVisible ? 'none' : 'block';
+            this.classList.toggle('active', !isVisible);
+        });
+
+        document.addEventListener('click', function(e) {
+            if (translateWidget && !translateWidget.contains(e.target) && e.target !== translateBtn) {
+                translateWidget.style.display = 'none';
+                translateBtn.classList.remove('active');
+            }
+        });
+
+        // Sincronización del selector custom con el motor de Google
+        customSelect.addEventListener('change', function() {
+            const lang = this.value;
+            const googleSelect = document.querySelector('#google_translate_element select');
+            if (googleSelect) {
+                googleSelect.value = lang;
+                googleSelect.dispatchEvent(new Event('change'));
+            }
+        });
+
+        // ============================================================
+        // 2. MENÚ MÓVIL
+        // ============================================================
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        });
+
+        // ============================================================
+        // 3. PROYECTOS (12 con precios duales)
+        // ============================================================
+        const proyectos = [
+            {
+                id: 1,
+                titulo: 'Nexus-Gateway v2.0',
+                fecha: '15/08/2025',
+                proposito: 'Orquestación y balanceo de carga para microservicios.',
+                descripcion: 'API Gateway con failover automático, caché Redis y rate limiting. Desplegado en clústeres de alta disponibilidad.',
+                stack: 'Nginx, Redis, Node.js, Docker',
+                precioMercado: 22000,
+                precioLanzamiento: 9500,
+                tiempo: '6 Semanas',
+                impacto: 'Reducción del 99.9% de downtime y mejora del 40% en tiempos de respuesta.',
+                github: 'https://github.com/andres-olguin/nexus-gateway',
+                icono: 'fa-cloud-upload-alt',
+                especialidad: 'DevOps & Cloud'
+            },
+            {
+                id: 2,
+                titulo: 'MediChain HL7 Parser',
+                fecha: '22/10/2025',
+                proposito: 'Integración hospitalaria para interoperabilidad de datos.',
+                descripcion: 'Motor de parseo de tramas HL7 v2.x y FHIR R4. Utilizado por clínicas para normalización de historias clínicas.',
+                stack: 'Python, FastAPI, SQLite',
+                precioMercado: 20000,
+                precioLanzamiento: 8500,
+                tiempo: '5 Semanas',
+                impacto: 'Reducción de errores de interoperabilidad en un 85% y ahorro de 20 horas/semana en procesamiento manual.',
+                github: 'https://github.com/andres-olguin/medichain-hl7',
+                icono: 'fa-heartbeat',
+                especialidad: 'Informática Biomédica'
+            },
+            {
+                id: 3,
+                titulo: 'AgroSense IoT Telemetry',
+                fecha: '05/12/2025',
+                proposito: 'Monitoreo satelital y de sensores para agricultura de precisión.',
+                descripcion: 'Firmware para ESP32 y dashboards en tiempo real con telemetría de suelo, temperatura y humedad.',
+                stack: 'C, C++, MQTT, Python, QGIS',
+                precioMercado: 26000,
+                precioLanzamiento: 11000,
+                tiempo: '7 Semanas',
+                impacto: 'Aumento del 30% en la eficiencia de riego y reducción del 25% en pérdidas de cultivos.',
+                github: 'https://github.com/andres-olguin/agrosense-iot',
+                icono: 'fa-tractor',
+                especialidad: 'IoT & Embebidos'
+            },
+            {
+                id: 4,
+                titulo: 'HFT LightSpeed Engine',
+                fecha: '14/01/2026',
+                proposito: 'Motor de trading de alta frecuencia (HFT) para mercados financieros.',
+                descripcion: 'Procesamiento de órdenes en microsegundos con colas de prioridad y latencia < 100µs.',
+                stack: 'C++, Java, Redis, SQL',
+                precioMercado: 38000,
+                precioLanzamiento: 15000,
+                tiempo: '10 Semanas',
+                impacto: 'Permitió a un cliente aumentar sus ganancias en un 15% gracias a la reducción de latencia.',
+                github: 'https://github.com/andres-olguin/hft-engine',
+                icono: 'fa-chart-pie',
+                especialidad: 'FinTech'
+            },
+            {
+                id: 5,
+                titulo: 'ContractGuard Smart Auditor',
+                fecha: '02/03/2026',
+                proposito: 'Auditoría automática de contratos inteligentes en Ethereum.',
+                descripcion: 'Análisis estático y dinámico de vulnerabilidades en Solidity. Genera reportes OWASP para smart contracts.',
+                stack: 'Solidity, Python, Web3.js',
+                precioMercado: 18000,
+                precioLanzamiento: 7800,
+                tiempo: '6 Semanas',
+                impacto: 'Detección del 95% de vulnerabilidades comunes en contratos antes del despliegue.',
+                github: 'https://github.com/andres-olguin/contractguard',
+                icono: 'fa-gavel',
+                especialidad: 'Legal Tech'
+            },
+            {
+                id: 6,
+                titulo: 'NeuroLearn LMS Adaptativo',
+                fecha: '10/04/2026',
+                proposito: 'Plataforma educativa con rutas de aprendizaje basadas en IA.',
+                descripcion: 'Sistema que ajusta el contenido educativo según el desempeño cognitivo del usuario. Integración con SCORM.',
+                stack: 'Django, React, PostgreSQL, TensorFlow',
+                precioMercado: 28000,
+                precioLanzamiento: 12000,
+                tiempo: '8 Semanas',
+                impacto: 'Mejora del 40% en la retención de conocimientos y reducción del 50% en tiempos de estudio.',
+                github: 'https://github.com/andres-olguin/neurolearn-lms',
+                icono: 'fa-brain',
+                especialidad: 'EdTech'
+            },
+            {
+                id: 7,
+                titulo: 'DataMine Analytics',
+                fecha: '20/06/2026',
+                proposito: 'Plataforma de análisis predictivo para e-commerce.',
+                descripcion: 'ETL, visualización interactiva y modelos de predicción de ventas utilizando Python, Pandas y Scikit-learn.',
+                stack: 'Python, Django, Pandas, Scikit-learn, Chart.js',
+                precioMercado: 19000,
+                precioLanzamiento: 8200,
+                tiempo: '6 Semanas',
+                impacto: 'Aumento del 22% en la precisión de pronósticos de demanda y reducción de inventario ocioso en un 18%.',
+                github: 'https://github.com/andres-olguin/datamine-analytics',
+                icono: 'fa-database',
+                especialidad: 'Minería de Datos & BI'
+            },
+            {
+                id: 8,
+                titulo: 'WebGL Immersive 3D Viewer',
+                fecha: '12/07/2026',
+                proposito: 'Visor 3D interactivo para modelos arquitectónicos y gemelos digitales.',
+                descripcion: 'Aplicación web que permite visualizar y manipular modelos 3D en tiempo real con Three.js y WebGL.',
+                stack: 'JavaScript, Three.js, WebGL',
+                precioMercado: 16000,
+                precioLanzamiento: 7000,
+                tiempo: '5 Semanas',
+                impacto: 'Permitió a una inmobiliaria reducir costos de visualización en un 60%.',
+                github: 'https://github.com/andres-olguin/webgl-viewer',
+                icono: 'fa-cubes',
+                especialidad: 'Videojuegos & Gráfica 3D'
+            },
+            {
+                id: 9,
+                titulo: 'SecureVault Cipher Suite',
+                fecha: '05/08/2026',
+                proposito: 'Solución de cifrado y gestión de claves para empresas.',
+                descripcion: 'Suite de cifrado AES-256, RSA y gestión de secretos con rotación automática. Cumple con estándares FIPS.',
+                stack: 'C++, OpenSSL, Python, Nginx',
+                precioMercado: 24000,
+                precioLanzamiento: 10200,
+                tiempo: '7 Semanas',
+                impacto: 'Cumplimiento normativo (GDPR, HIPAA) y reducción de riesgos de filtración de datos en un 90%.',
+                github: 'https://github.com/andres-olguin/securevault',
+                icono: 'fa-lock',
+                especialidad: 'Ciberseguridad'
+            },
+            {
+                id: 10,
+                titulo: 'NeuroSense Psychometrics',
+                fecha: '18/08/2026',
+                proposito: 'Análisis de bioseñales para detección de patrones neuro-conductuales.',
+                descripcion: 'Sistema que procesa datos de sensores EEG y ECG para identificar estados emocionales y cognitivos.',
+                stack: 'Python, TensorFlow, Pandas, Flask',
+                precioMercado: 32000,
+                precioLanzamiento: 13500,
+                tiempo: '9 Semanas',
+                impacto: 'Validado en entornos clínicos con una precisión del 88%.',
+                github: 'https://github.com/andres-olguin/neurosense',
+                icono: 'fa-head-side-virus',
+                especialidad: 'Psicoinformática'
+            },
+            {
+                id: 11,
+                titulo: 'LegacyMover (Migración de Sistemas)',
+                fecha: '25/08/2026',
+                proposito: 'Migración de sistemas legacy a arquitecturas modernas.',
+                descripcion: 'Herramienta de análisis y migración automática de código COBOL y Visual Basic a Python y Node.js.',
+                stack: 'Python, AST, Node.js, Docker',
+                precioMercado: 45000,
+                precioLanzamiento: 18000,
+                tiempo: '12 Semanas',
+                impacto: 'Permitió a una empresa financiera modernizar su núcleo bancario en un 70% del tiempo estimado.',
+                github: 'https://github.com/andres-olguin/legacymover',
+                icono: 'fa-exchange-alt',
+                especialidad: 'Desarrollo Web & Móvil'
+            },
+            {
+                id: 12,
+                titulo: 'Biopulse Cognitive Interface',
+                fecha: '30/08/2026',
+                proposito: 'Interfaz cerebro-computadora para aplicaciones de accesibilidad.',
+                descripcion: 'Sistema que traduce señales EEG en comandos para controlar dispositivos y aplicaciones.',
+                stack: 'Python, TensorFlow, React, WebSocket',
+                precioMercado: 35000,
+                precioLanzamiento: 14800,
+                tiempo: '10 Semanas',
+                impacto: 'Ha sido probado con usuarios con discapacidad motriz, mejorando su autonomía en un 40%.',
+                github: 'https://github.com/andres-olguin/biopulse',
+                icono: 'fa-microchip',
+                especialidad: 'Psicoinformática'
+            }
+        ];
+
+        // ============================================================
+        // 4. CARRUSEL DE PROYECTOS
+        // ============================================================
+        let currentSlide = 0;
+        const slidesContainer = document.getElementById('projectSlides');
+        const dotsContainer = document.getElementById('projectDots');
+
+        function renderSlides() {
+            slidesContainer.innerHTML = '';
+            proyectos.forEach((p, index) => {
+                const div = document.createElement('div');
+                div.className = `project-slide ${index === 0 ? 'active-slide' : 'hidden-slide'}`;
+                div.dataset.index = index;
+                const precioMercadoFormateado = '$' + p.precioMercado.toLocaleString('es-CL') + ' USD';
+                const precioLanzamientoFormateado = '$' + p.precioLanzamiento.toLocaleString('es-CL') + ' USD';
+                div.innerHTML = `
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 bg-slate-950/50 p-4 sm:p-6 rounded-xl border border-slate-800">
+                        <div class="md:col-span-2 space-y-3">
+                            <span class="text-[10px] sm:text-xs text-cyan-400 font-mono">PUBLICADO: ${p.fecha}</span>
+                            <span class="text-[10px] bg-slate-800 px-2 py-0.5 rounded text-slate-300 ml-2">${p.especialidad}</span>
+                            <h3 class="text-lg sm:text-xl font-bold text-white"><i class="fa-solid ${p.icono} text-cyan-400 mr-2"></i>${p.titulo}</h3>
+                            <p class="text-[10px] sm:text-xs text-slate-400 font-semibold uppercase tracking-wider">Propósito: ${p.proposito}</p>
+                            <p class="text-sm text-slate-300 leading-relaxed">${p.descripcion}</p>
+                            <div class="flex flex-wrap gap-1.5 sm:gap-2 pt-1 sm:pt-2">
+                                ${p.stack.split(', ').map(t => `<span class="bg-slate-800 px-2 py-0.5 rounded text-[10px] sm:text-xs border border-slate-700">${t}</span>`).join('')}
+                            </div>
+                            <div class="bg-slate-900/50 border-l-2 border-emerald-400 pl-2 sm:pl-3 py-1 text-[10px] sm:text-xs text-emerald-300">
+                                <i class="fa-regular fa-lightbulb mr-1"></i> Impacto: ${p.impacto}
+                            </div>
+                            <a href="${p.github}" target="_blank" class="inline-block mt-1 text-[10px] sm:text-xs text-cyan-400 hover:underline"><i class="fa-brands fa-github mr-1"></i> Ver repositorio en GitHub</a>
+                        </div>
+                        <div class="flex flex-col justify-center items-center gap-1 sm:gap-2 bg-slate-900/50 p-3 sm:p-4 rounded-lg border border-slate-800 text-center">
+                            <div>
+                                <span class="text-[10px] text-slate-500 block">Valor de mercado</span>
+                                <span class="price-market">${precioMercadoFormateado}</span>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-emerald-400 block">Precio de lanzamiento</span>
+                                <span class="price-launch price-value" data-usd="${p.precioLanzamiento}">${precioLanzamientoFormateado}</span>
+                            </div>
+                            <span class="text-sm text-slate-400">⏱ ${p.tiempo}</span>
+                            <span class="text-[10px] text-slate-500">Costo de desarrollo similar</span>
+                            <button onclick="alert('Demo interactiva de ${p.titulo} (próximamente)')" class="px-3 sm:px-4 py-1.5 bg-cyan-500/20 border border-cyan-500/40 text-cyan-300 rounded text-[10px] sm:text-xs font-bold hover:bg-cyan-500/30 transition w-full">Ver Demo</button>
+                            <span class="text-[10px] text-slate-600 w-full">* Precio especial para primeros clientes</span>
+                        </div>
+                    </div>
+                `;
+                slidesContainer.appendChild(div);
+            });
+            dotsContainer.innerHTML = '';
+            proyectos.forEach((_, index) => {
+                const dot = document.createElement('button');
+                dot.className = `w-2 h-2 rounded-full transition ${index === 0 ? 'bg-cyan-400' : 'bg-slate-600'}`;
+                dot.dataset.index = index;
+                dot.addEventListener('click', () => goToSlide(index));
+                dotsContainer.appendChild(dot);
+            });
+        }
+
+        function goToSlide(index) {
+            const slides = document.querySelectorAll('.project-slide');
+            const dots = document.querySelectorAll('#projectDots button');
+            if (slides.length === 0) return;
+            slides.forEach((s, i) => {
+                s.className = `project-slide ${i === index ? 'active-slide' : 'hidden-slide'}`;
+            });
+            dots.forEach((d, i) => {
+                d.className = `w-2 h-2 rounded-full transition ${i === index ? 'bg-cyan-400' : 'bg-slate-600'}`;
+            });
+            currentSlide = index;
+        }
+
+        function nextSlide() {
+            let next = currentSlide + 1;
+            if (next >= proyectos.length) next = 0;
+            goToSlide(next);
+        }
+
+        function prevSlide() {
+            let prev = currentSlide - 1;
+            if (prev < 0) prev = proyectos.length - 1;
+            goToSlide(prev);
+        }
+
+        document.getElementById('nextProject').addEventListener('click', nextSlide);
+        document.getElementById('prevProject').addEventListener('click', prevSlide);
+
+        let autoRotate = setInterval(nextSlide, 7000);
+        const carouselContainer = document.querySelector('.relative.bg-slate-900\\/40');
+        if (carouselContainer) {
+            carouselContainer.addEventListener('mouseenter', () => clearInterval(autoRotate));
+            carouselContainer.addEventListener('mouseleave', () => { autoRotate = setInterval(nextSlide, 7000); });
+        }
+        renderSlides();
+
+        // ============================================================
+        // 5. TABS Y HERRAMIENTAS
+        // ============================================================
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = {
+            'tab-analyzer': document.getElementById('tab-analyzer'),
+            'tab-hl7': document.getElementById('tab-hl7'),
+            'tab-solidity': document.getElementById('tab-solidity'),
+            'tab-iot': document.getElementById('tab-iot'),
+            'tab-ml': document.getElementById('tab-ml'),
+            'tab-api': document.getElementById('tab-api'),
+            'tab-converter': document.getElementById('tab-converter'),
+            'tab-network': document.getElementById('tab-network')
+        };
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                Object.keys(tabContents).forEach(key => {
+                    tabContents[key].classList.toggle('hidden', key !== btn.dataset.tab);
+                });
+            });
+        });
+
+        // --- Asistente de Código ---
+        document.getElementById('analyzeCodeBtn').addEventListener('click', function() {
+            const code = document.getElementById('codeInputAnalyzer').value;
+            const output = document.getElementById('analyzerOutput');
+            if (!code.trim()) {
+                output.innerHTML = '⚠️ Por favor, ingresa código para analizar.';
+                return;
+            }
+            let analysis = '🔍 Análisis del código:\n\n';
+            let lang = 'Desconocido';
+            if (code.includes('console.log') || code.includes('function') || code.includes('=>')) lang = 'JavaScript';
+            else if (code.includes('def ') || code.includes('import ') || code.includes('print(')) lang = 'Python';
+            else if (code.includes('#include') || code.includes('int main') || code.includes('printf')) lang = 'C/C++';
+            else if (code.includes('System.out.println') || code.includes('public class')) lang = 'Java';
+            analysis += '📌 Lenguaje detectado: ' + lang + '\n';
+
+            let purpose = 'Realizar una operación específica.';
+            if (code.includes('console.log') || code.includes('print(')) purpose = 'Mostrar información en consola.';
+            else if (code.includes('def ')) purpose = 'Definir una función reutilizable.';
+            else if (code.includes('for') || code.includes('while')) purpose = 'Iterar sobre una colección de datos.';
+            else if (code.includes('if') || code.includes('switch')) purpose = 'Tomar decisiones condicionales.';
+            analysis += '📝 Propósito sugerido: ' + purpose + '\n';
+
+            let warnings = [];
+            if (code.includes('var ')) warnings.push('⚠️ Usa "let" o "const" en lugar de "var" para mejor ámbito.');
+            if (code.includes('eval(')) warnings.push('🚨 Peligro: eval() puede ejecutar código malicioso. Evita su uso.');
+            if (!code.includes('try') && code.includes('async')) warnings.push('💡 Considera try/catch en funciones asíncronas.');
+            if (code.includes('malloc') && !code.includes('free')) warnings.push('⚠️ Posible fuga de memoria: malloc sin free.');
+            if (code.includes('printf') && !code.includes('\\n')) warnings.push('💡 Agrega "\\n" en printf para saltos de línea.');
+            if (code.includes('def ') && !code.includes('return')) warnings.push('💡 Tu función no retorna nada, ¿es intencional?');
+            if (code.includes('for') && code.includes('i++') && !code.includes('var i')) warnings.push('💡 Declara el índice del bucle con "let" o "int".');
+            if (code.includes('System.out.println') && !code.includes('main')) warnings.push('⚠️ Código Java necesita un método main para ejecutarse.');
+
+            if (warnings.length === 0) warnings.push('✅ No se detectaron errores comunes. ¡Buen trabajo!');
+            analysis += '\n📋 Observaciones:\n' + warnings.join('\n');
+
+            let commands = [];
+            if (lang === 'JavaScript') {
+                commands.push('🔧 Para ejecutar: node archivo.js');
+                commands.push('📦 Para instalar dependencias: npm install');
+            } else if (lang === 'Python') {
+                commands.push('🔧 Para ejecutar: python archivo.py');
+                commands.push('📦 Para instalar paquetes: pip install -r requirements.txt');
+            } else if (lang === 'C/C++') {
+                commands.push('🔧 Para compilar: g++ -o programa archivo.cpp');
+                commands.push('🔧 Para ejecutar: ./programa');
+            }
+            if (commands.length) {
+                analysis += '\n\n💻 Comandos útiles:\n' + commands.join('\n');
+            }
+            analysis += '\n\n📚 Más información: Consulta la documentación oficial del lenguaje.';
+            output.innerHTML = analysis;
+        });
+
+        // --- Visor HL7 ---
+        document.getElementById('parseHl7Btn').addEventListener('click', function() {
+            const input = document.getElementById('hl7Input').value;
+            const output = document.getElementById('hl7Output');
+            if (!input.trim()) {
+                output.innerHTML = '<span class="text-rose-400">Error: Ingresa una trama HL7 válida.</span>';
+                return;
+            }
+            try {
+                const segments = input.split(/\r?\n/);
+                let html = '<div class="space-y-1"><span class="text-cyan-400 font-mono">// Segmentos extraídos</span>';
+                let segmentCount = 0;
+                segments.forEach(seg => {
+                    if (!seg.trim()) return;
+                    const parts = seg.split('|');
+                    const segName = parts[0] || 'UNKNOWN';
+                    html += `<div class="flex flex-wrap items-center gap-1 border-b border-slate-800 py-1">
+                                <span class="bg-cyan-500/20 text-cyan-300 px-2 py-0.5 rounded text-[10px] font-bold">${segName}</span>
+                                <span class="text-slate-300 text-[10px]">${parts.slice(1).join(' | ')}</span>
+                            </div>`;
+                    segmentCount++;
+                });
+                html += '<div class="mt-2 text-xs text-slate-500">✅ Segmentos válidos: ' + segmentCount + '</div>';
+                if (segmentCount < 2) {
+                    html += '<div class="text-amber-400 text-xs">⚠️ La trama parece incompleta. Debería tener al menos MSH y PID.</div>';
+                }
+                output.innerHTML = html;
+            } catch (e) {
+                output.innerHTML = `<span class="text-rose-400">Error al parsear: ${e.message}</span>`;
+            }
+        });
+
+        // --- Validador Solidity ---
+        document.getElementById('validateSolidityBtn').addEventListener('click', function() {
+            const code = document.getElementById('solidityInput').value;
+            const output = document.getElementById('solidityOutput');
+            if (!code.trim()) {
+                output.innerHTML = '⚠️ Ingresa un contrato Solidity.';
+                return;
+            }
+            let report = '🔍 Análisis de contrato:\n\n';
+            let vulns = [];
+            let recomendaciones = [];
+
+            if (code.includes('reentrancy') || code.includes('call.value')) {
+                vulns.push('🚨 Posible vulnerabilidad de reentrancy. Usa el patrón "checks-effects-interactions".');
+            }
+            if (code.includes('tx.origin')) {
+                vulns.push('⚠️ Uso de tx.origin (inseguro). Prefiere msg.sender.');
+            }
+            if (code.includes('block.timestamp')) {
+                vulns.push('⚠️ Dependencia de block.timestamp (manipulable por mineros).');
+            }
+            if (code.includes('selfdestruct')) {
+                vulns.push('⚠️ selfdestruct es peligroso. Úsalo con precaución.');
+            }
+            if (code.includes('pragma solidity')) {
+                recomendaciones.push('✅ Versión de Solidity detectada. Usa ^0.8.0 para seguridad.');
+            }
+            if (!code.includes('require') && !code.includes('assert')) {
+                recomendaciones.push('💡 Agrega require() o assert() para validar condiciones.');
+            }
+            if (code.includes('uint') && !code.includes('SafeMath')) {
+                recomendaciones.push('💡 Considera usar SafeMath para evitar overflow en versiones anteriores a 0.8.0.');
+            }
+
+            if (vulns.length === 0) vulns.push('✅ No se detectaron vulnerabilidades comunes.');
+            report += '🛡️ Vulnerabilidades:\n' + vulns.join('\n') + '\n\n';
+            report += '📌 Recomendaciones:\n' + recomendaciones.join('\n');
+            if (!recomendaciones.length) {
+                report += '✅ El contrato parece estar bien estructurado.';
+            }
+            output.innerHTML = report;
+        });
+
+        // --- Simulador IoT ---
+        let sensorHistory = [];
+        document.getElementById('simulateSensorBtn').addEventListener('click', function() {
+            const temp = (20 + Math.random() * 15).toFixed(1);
+            const hum = (40 + Math.random() * 40).toFixed(1);
+            const pres = (980 + Math.random() * 40).toFixed(1);
+            const display = document.getElementById('sensorDataDisplay');
+            const output = document.getElementById('iotOutput');
+            const chart = document.getElementById('iotChart');
+
+            display.textContent = `🌡️ ${temp}°C | 💧 ${hum}% | 📊 ${pres} hPa`;
+            output.innerHTML = `✅ Última lectura: Temp: ${temp}°C, Hum: ${hum}%, Pres: ${pres} hPa`;
+
+            sensorHistory.push({ temp: parseFloat(temp), hum: parseFloat(hum), pres: parseFloat(pres) });
+            if (sensorHistory.length > 10) sensorHistory.shift();
+
+            let chartHtml = '<div class="space-y-1">';
+            chartHtml += `<div class="sensor-bar"><span class="w-16 text-cyan-300 text-[10px]">Temperatura</span><div class="bar" style="width:${(sensorHistory[sensorHistory.length-1].temp / 40 * 100)}%; background:#38bdf8;"></div><span class="text-[10px] text-slate-400">${sensorHistory[sensorHistory.length-1].temp}°C</span></div>`;
+            chartHtml += `<div class="sensor-bar"><span class="w-16 text-cyan-300 text-[10px]">Humedad</span><div class="bar" style="width:${sensorHistory[sensorHistory.length-1].hum}%; background:#34d399;"></div><span class="text-[10px] text-slate-400">${sensorHistory[sensorHistory.length-1].hum}%</span></div>`;
+            chartHtml += `<div class="sensor-bar"><span class="w-16 text-cyan-300 text-[10px]">Presión</span><div class="bar" style="width:${(sensorHistory[sensorHistory.length-1].pres / 1050 * 100)}%; background:#f472b6;"></div><span class="text-[10px] text-slate-400">${sensorHistory[sensorHistory.length-1].pres} hPa</span></div>`;
+            chartHtml += '</div>';
+            chart.innerHTML = chartHtml;
+        });
+
+        // --- Explorador de Datos ---
+        document.getElementById('analyzeDataBtn').addEventListener('click', function() {
+            const data = document.getElementById('dataInput').value;
+            const output = document.getElementById('dataOutput');
+            if (!data.trim()) {
+                output.innerHTML = '⚠️ Ingresa datos en formato CSV (fecha,valor).';
+                return;
+            }
+            const lines = data.trim().split('\n').filter(l => l.trim() !== '');
+            if (lines.length < 2) {
+                output.innerHTML = '⚠️ Necesitas al menos una fila de datos (cabecera + valores).';
+                return;
+            }
+            const values = lines.slice(1).map(line => {
+                const parts = line.split(',');
+                return parseFloat(parts[1]);
+            }).filter(v => !isNaN(v));
+            if (values.length === 0) {
+                output.innerHTML = '⚠️ No se encontraron valores numéricos válidos.';
+                return;
+            }
+            const sum = values.reduce((a, b) => a + b, 0);
+            const avg = sum / values.length;
+            const sorted = [...values].sort((a, b) => a - b);
+            const median = sorted.length % 2 === 0 ? (sorted[sorted.length/2 - 1] + sorted[sorted.length/2]) / 2 : sorted[Math.floor(sorted.length/2)];
+            const variance = values.reduce((a, b) => a + (b - avg) ** 2, 0) / values.length;
+            const stddev = Math.sqrt(variance);
+            const min = Math.min(...values);
+            const max = Math.max(...values);
+            const trend = values[values.length - 1] > values[0] ? '📈 Tendencia al alza' : '📉 Tendencia a la baja';
+
+            output.innerHTML = `
+                📊 Estadísticas avanzadas:
+                - Total de registros: ${values.length}
+                - Promedio: ${avg.toFixed(2)}
+                - Mediana: ${median.toFixed(2)}
+                - Desviación estándar: ${stddev.toFixed(2)}
+                - Mínimo: ${min}
+                - Máximo: ${max}
+                - ${trend}
+                💡 Recomendación: ${trend.includes('alza') ? 'Considera aumentar producción/inventario.' : 'Revisa estrategias para mejorar ventas.'}
+            `;
+        });
+
+        // --- Generador API ---
+        document.getElementById('generateApiBtn').addEventListener('click', function() {
+            const lang = document.getElementById('apiLang').value;
+            const output = document.getElementById('apiOutput');
+            if (lang === 'node') {
+                output.innerHTML = `// API REST con Node.js y Express
+const express = require('express');
+const app = express();
+const port = 3000;
+
+app.use(express.json());
+
+app.get('/api/data', (req, res) => {
+    res.json({ message: '¡Hola desde MasterTech API!' });
+});
+
+app.post('/api/data', (req, res) => {
+    const { name } = req.body;
+    res.json({ message: \`Recibido: \${name}\` });
+});
+
+app.listen(port, () => {
+    console.log(\`API corriendo en http://localhost:\${port}\`);
+});`;
+            } else {
+                output.innerHTML = `# API REST con Python y Flask
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+@app.route('/api/data', methods=['GET'])
+def get_data():
+    return jsonify({'message': '¡Hola desde MasterTech API!'})
+
+@app.route('/api/data', methods=['POST'])
+def post_data():
+    name = request.json.get('name')
+    return jsonify({'message': f'Recibido: {name}'})
+
+if __name__ == '__main__':
+    app.run(port=3000)`;
+            }
+        });
+
+        // --- Convertidor ---
+        document.getElementById('convertBtn').addEventListener('click', function() {
+            const input = document.getElementById('convertInput').value;
+            const from = document.getElementById('convertFrom').value;
+            const to = document.getElementById('convertTo').value;
+            const output = document.getElementById('convertOutput');
+
+            if (!input.trim()) {
+                output.innerHTML = '⚠️ Ingresa código para convertir.';
                 return;
             }
 
-            analysisStatus.textContent = "Ejecutando parser y análisis estático...";
-            analysisStatus.className = "text-amber-400 text-xs";
-
-            const lines = code.split('\n').filter(l => l.trim() !== '' && !l.trim().startsWith('//') && !l.trim().startsWith('#'));
-            const totalLines = lines.length;
-
-            let complexity = 1;
-            let score = 100;
-            let findings = [];
-
-            const decisionMatches = code.match(/(if|else if|while|for|switch|catch|\?\?|\&\&|\|\|)/g);
-            if (decisionMatches) {
-                complexity += decisionMatches.length;
+            let result = '';
+            if (from === 'python' && to === 'javascript') {
+                result = input.replace(/def (\w+)\((.*)\):/g, 'function $1($2) {')
+                             .replace(/return/g, 'return ')
+                             .replace(/print\((.*)\)/g, 'console.log($1)')
+                             .replace(/if (.*):/g, 'if ($1) {')
+                             .replace(/else:/g, 'else {')
+                             .replace(/for (\w+) in (.*):/g, 'for (let $1 of $2) {');
+                result = result.split('\n').map(line => line.replace(/:/g, ';')).join('\n') + '\n}';
+            } else if (from === 'javascript' && to === 'python') {
+                result = input.replace(/function (\w+)\((.*)\) \{/g, 'def $1($2):')
+                             .replace(/console\.log\((.*)\)/g, 'print($1)')
+                             .replace(/if \((.*)\) \{/g, 'if $1:')
+                             .replace(/else \{/g, 'else:')
+                             .replace(/for \(let (\w+) of (.*)\) \{/g, 'for $1 in $2:');
+                result = result.split('\n').map(line => line.replace(/\{/g, '').replace(/\}/g, '').trim()).join('\n');
+            } else {
+                result = '⚠️ Conversión entre ' + from + ' y ' + to + ' no implementada aún.';
             }
-
-            const lang = codeLang.value;
-
-            if (lang === 'javascript') {
-                if (code.includes('eval(')) {
-                    score -= 30;
-                    findings.push('🚨 <b class="text-rose-400">Riesgo Alto:</b> Uso indebido de eval() detectado. Permite ejecución arbitraria de código.');
-                }
-                if (code.includes('var ')) {
-                    score -= 10;
-                    findings.push('⚠️ <b class="text-amber-400">Buenas Prácticas:</b> Se usó "var". Reemplazar por "const" o "let" para evitar problemas de scope.');
-                }
-                if (!code.includes('try') && code.includes('async')) {
-                    score -= 10;
-                    findings.push('💡 <b class="text-cyan-400">Observación:</b> Función asíncrona detectada sin bloque try/catch para manejo de excepciones.');
-                }
-            } else if (lang === 'python') {
-                if (code.includes('exec(') || code.includes('eval(')) {
-                    score -= 30;
-                    findings.push('🚨 <b class="text-rose-400">Riesgo Alto:</b> Uso de exec() o eval() detectado en Python.');
-                }
-                if (code.includes('except:')) {
-                    score -= 15;
-                    findings.push('⚠️ <b class="text-amber-400">Manejo de Errores:</b> Bloque except genérico ("except:"). Se recomienda capturar excepciones específicas.');
-                }
-            } else if (lang === 'cpp') {
-                if (code.includes('strcpy(') || code.includes('gets(')) {
-                    score -= 35;
-                    findings.push('🚨 <b class="text-rose-400">Vulnerabilidad Crítica:</b> Función insegura (strcpy/gets) vulnerable a Buffer Overflow.');
-                }
-                if (code.includes('malloc(') && !code.includes('free(')) {
-                    score -= 20;
-                    findings.push('⚠️ <b class="text-amber-400">Fuga de Memoria:</b> Asignación de memoria dinámica (malloc) sin correspondiente free().');
-                }
-            }
-
-            if (findings.length === 0) {
-                findings.push('✅ <b class="text-emerald-400">Código Limpio:</b> No se detectaron patrones inseguros ni prácticas obsoletas conocidas.');
-            }
-
-            resLines.textContent = totalLines;
-            resComplexity.textContent = complexity;
-            resScore.textContent = `${Math.max(score, 0)}/100`;
-
-            resFindings.innerHTML = findings.map(f => `<li>${f}</li>`).join('');
-
-            analysisResults.classList.remove('hidden');
-            analysisStatus.textContent = "Análisis completado exitosamente.";
-            analysisStatus.className = "text-emerald-400 text-xs";
+            output.innerHTML = result;
         });
 
-        // 2. PETICIÓN HTTP REAL AL GATEWAY
-        const sendReqBtn = document.getElementById('send-request-btn');
-        const apiResponseOutput = document.getElementById('api-response-output');
+        // --- Analizador de Red ---
+        document.getElementById('scanNetworkBtn').addEventListener('click', function() {
+            const ip = document.getElementById('ipInput').value || '192.168.1.1';
+            const start = parseInt(document.getElementById('portStart').value) || 20;
+            const end = parseInt(document.getElementById('portEnd').value) || 25;
+            const output = document.getElementById('networkOutput');
 
-        sendReqBtn.addEventListener('click', async () => {
-            apiResponseOutput.innerHTML = `<pre class="text-amber-400">// Conectando con http://localhost/api/v1/data ...</pre>`;
-            const start = Date.now();
+            if (start < 0 || end > 65535 || start > end) {
+                output.innerHTML = '⚠️ Rango de puertos inválido (debe ser 0-65535).';
+                return;
+            }
 
+            let result = '🔎 Escaneando ' + ip + ' desde puerto ' + start + ' hasta ' + end + '...\n\n';
+            for (let port = start; port <= end; port++) {
+                const open = Math.random() > 0.7;
+                result += (open ? '✅ ' : '❌ ') + 'Puerto ' + port + ' ' + (open ? 'abierto' : 'cerrado');
+                if (open) {
+                    const services = ['HTTP', 'HTTPS', 'FTP', 'SSH', 'SMTP', 'DNS'];
+                    result += ' (' + services[Math.floor(Math.random() * services.length)] + ')\n';
+                } else {
+                    result += '\n';
+                }
+            }
+            result += '\n📌 Resumen: ' + (end - start + 1) + ' puertos escaneados, ' + Math.round((end - start + 1) * 0.3) + ' abiertos.';
+            output.innerHTML = result;
+        });
+
+        // ============================================================
+        // 6. FAQ
+        // ============================================================
+        document.querySelectorAll('.faq-question').forEach(q => {
+            q.addEventListener('click', function() {
+                this.parentElement.classList.toggle('active');
+            });
+        });
+
+        // ============================================================
+        // 7. COTIZADOR
+        // ============================================================
+        let exchangeRates = { USD: 1 };
+        async function fetchExchangeRates() {
             try {
-                const response = await fetch('http://localhost/api/v1/data', {
-                    method: 'GET',
-                    headers: { 'x-api-key': 'nexus-secret-key-2026' }
-                });
-                const duration = Date.now() - start;
-                const data = await response.json();
-
-                apiResponseOutput.innerHTML = `<pre class="text-emerald-400">// Status: ${response.status} OK (Latencia Red: ${duration}ms)\n${JSON.stringify(data, null, 2)}</pre>`;
-            } catch (error) {
-                apiResponseOutput.innerHTML = `<pre class="text-rose-400">// Error de Conexión: El API Gateway local en puerto 80 no responde.\nAsegúrate de tener Nginx levantado con tus nodos activos.</pre>`;
+                const res = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
+                const data = await res.json();
+                exchangeRates = data.rates;
+            } catch (e) {
+                console.warn('Error obteniendo tasas, usando valores fijos.');
+                exchangeRates = { USD: 1, EUR: 0.92, GBP: 0.79, CLP: 950, BRL: 5.2, MXN: 18.5, COP: 4200, ARS: 1000, PEN: 3.7, JPY: 148, CNY: 7.2 };
             }
-        });
+        }
+        fetchExchangeRates();
 
-        // 3. COTIZADOR Y ENVIADOR A WHATSAPP
-        const cfgDev = document.getElementById('cfg-dev');
-        const cfgAi = document.getElementById('cfg-ai');
-        const cfgSec = document.getElementById('cfg-sec');
-        const cfgPrice = document.getElementById('cfg-price');
-        const cfgTime = document.getElementById('cfg-time');
-        const contactWaBtn = document.getElementById('contact-wa-btn');
+        function actualizarCotizacion() {
+            const tipo = document.getElementById('cfgTipo').value;
+            const seg = document.getElementById('cfgSeg').value;
+            const ia = document.getElementById('cfgIa').value;
+            let base = 1500;
+            let desglose = { desarrollo: 800, ia: 400, seguridad: 300 };
 
-        function calculateQuote() {
-            let price = 1500;
-            let weeks = 2;
+            if (tipo === 'mobile') { base += 500; desglose.desarrollo += 500; }
+            if (tipo === 'full') { base += 1500; desglose.desarrollo += 1500; }
+            if (tipo === 'ai') { base += 2000; desglose.ia += 2000; }
+            if (tipo === 'datamine') { base += 1200; desglose.ia += 800; desglose.desarrollo += 400; }
+            if (tipo === 'cyber') { base += 1300; desglose.seguridad += 1300; }
+            if (tipo === 'devops') { base += 1400; desglose.desarrollo += 800; desglose.seguridad += 600; }
+            if (tipo === 'fintech') { base += 2500; desglose.desarrollo += 1000; desglose.ia += 1500; }
+            if (tipo === 'biomed') { base += 1800; desglose.desarrollo += 1000; desglose.ia += 800; }
+            if (tipo === 'legal') { base += 1200; desglose.desarrollo += 600; desglose.ia += 600; }
+            if (tipo === 'gamedev') { base += 2000; desglose.desarrollo += 1500; desglose.ia += 500; }
+            if (tipo === 'edtech') { base += 1400; desglose.desarrollo += 800; desglose.ia += 600; }
+            if (tipo === 'iot') { base += 1600; desglose.desarrollo += 1200; desglose.seguridad += 400; }
+            if (tipo === 'psycho') { base += 2200; desglose.ia += 1600; desglose.desarrollo += 600; }
+            if (tipo === 'consulting') { base += 800; desglose.desarrollo += 800; }
+            if (tipo === 'migration') { base += 3000; desglose.desarrollo += 3000; }
+            if (tipo === 'optimization') { base += 1500; desglose.ia += 1000; desglose.desarrollo += 500; }
 
-            if (cfgDev.value === 'mobile') { price += 800; weeks += 1; }
-            if (cfgDev.value === 'full') { price += 2000; weeks += 3; }
+            if (seg === 'adv') { base += 500; desglose.seguridad += 500; }
+            if (seg === 'enterprise') { base += 1200; desglose.seguridad += 1200; }
+            if (ia === 'llm') { base += 800; desglose.ia += 800; }
+            if (ia === 'custom') { base += 1800; desglose.ia += 1800; }
 
-            if (cfgAi.value === 'llm') { price += 700; weeks += 1; }
-            if (cfgAi.value === 'custom') { price += 2200; weeks += 3; }
+            let semanas = 3;
+            if (tipo === 'full' || tipo === 'ai' || tipo === 'migration' || tipo === 'psycho' || tipo === 'fintech') semanas += 2;
+            if (seg === 'enterprise') semanas += 1;
+            if (ia === 'custom') semanas += 1;
 
-            if (cfgSec.value === 'advanced') { price += 1000; weeks += 1; }
+            const currency = document.getElementById('currencySelector').value;
+            const rate = exchangeRates[currency] || 1;
+            const totalConverted = base * rate;
+            const formatter = new Intl.NumberFormat('es-CL', { style: 'currency', currency: currency });
+            document.getElementById('precioFinal').textContent = formatter.format(totalConverted);
+            document.getElementById('precioDesglose').textContent = `Desglose: ${formatter.format(desglose.desarrollo * rate)} desarrollo + ${formatter.format(desglose.ia * rate)} IA + ${formatter.format(desglose.seguridad * rate)} seguridad`;
+            document.getElementById('tiempoFinal').textContent = `Plazo: ${semanas} a ${semanas + 2} semanas`;
 
-            cfgPrice.textContent = `$${price.toLocaleString('es-CL')} USD`;
-            cfgTime.textContent = `Tiempo estimado: ${weeks} a ${weeks + 2} semanas`;
-
-            return { price, weeks };
+            document.querySelectorAll('.price-value').forEach(el => {
+                const usdValue = parseInt(el.dataset.usd);
+                if (!isNaN(usdValue)) {
+                    const converted = usdValue * rate;
+                    el.textContent = formatter.format(converted);
+                }
+            });
         }
 
-        cfgDev.addEventListener('change', calculateQuote);
-        cfgAi.addEventListener('change', calculateQuote);
-        cfgSec.addEventListener('change', calculateQuote);
-
-        contactWaBtn.addEventListener('click', () => {
-            const { price, weeks } = calculateQuote();
-            const devText = cfgDev.options[cfgDev.selectedIndex].text;
-            const aiText = cfgAi.options[cfgAi.selectedIndex].text;
-            const secText = cfgSec.options[cfgSec.selectedIndex].text;
-
-            const msg = `Hola MasterTech SpA, coticé un proyecto en su web:\n\n- Arquitectura: ${devText}\n- Módulo IA: ${aiText}\n- Ciberseguridad: ${secText}\n\nPresupuesto estimado: $${price} USD (${weeks} semanas). Me gustaría coordinar los detalles.`;
-
-            window.open(`https://wa.me/56992947393?text=${encodeURIComponent(msg)}`, '_blank');
+        document.querySelectorAll('#cotizador select').forEach(el => {
+            el.addEventListener('change', actualizarCotizacion);
         });
+        document.getElementById('currencySelector').addEventListener('change', actualizarCotizacion);
+        setTimeout(actualizarCotizacion, 1500);
+
+        window.enviarCotizacion = function() {
+            const precio = document.getElementById('precioFinal').textContent;
+            const msg = `Hola MasterTech SpA, solicito cotización formal para un proyecto. Presupuesto estimado: ${precio}. Me interesa coordinar una reunión.`;
+            window.open(`https://wa.me/56992947393?text=${encodeURIComponent(msg)}`, '_blank');
+        };
     </script>
 </body>
 </html>

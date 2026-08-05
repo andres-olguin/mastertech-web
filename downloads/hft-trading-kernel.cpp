@@ -1,6 +1,5 @@
 // MasterTech SpA - Módulo FinTech HFT (High-Frequency Trading) Kernel
 #include <iostream>
-#include <vector>
 #include <chrono>
 
 struct Order {
@@ -14,7 +13,7 @@ class MatchingEngine {
 public:
     void processOrder(const Order& order) {
         auto start = std::chrono::high_resolution_clock::now();
-        // Lógica de calce de órdenes de alta velocidad
+        // Calce de órdenes de ultra alta velocidad
         auto end = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double, std::milli> latency = end - start;
         std::cout << "[MasterTech FinTech] Orden ID " << order.id 

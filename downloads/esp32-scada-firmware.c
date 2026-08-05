@@ -8,7 +8,6 @@ typedef struct {
 } SensorData;
 
 void read_telemetry_sensors(SensorData *data) {
-    // Lectura analógica simulada de sensores de campo
     data->soilMoisture = 42.5f;
     data->ambientTemp = 21.3f;
     data->phLevel = 6.8f;

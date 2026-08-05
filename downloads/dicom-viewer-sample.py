@@ -1,6 +1,4 @@
 # MasterTech SpA - Módulo de Informática Biomédica v1.0
-import sys
-
 def parse_hl7_message(hl7_str):
     """Parsea segmentos HL7 v2.x para integraciones hospitalarias."""
     segments = hl7_str.strip().split('\r')
