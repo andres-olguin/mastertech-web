@@ -38,6 +38,6 @@ Abre `http://localhost:8000/index.html`. Este servidor simple sirve archivos est
 4. Realizar un respaldo recuperable y definir redirecciones si corresponde.
 5. Mantener historial y atribuciones; archivar solo cuando se confirme que no hay dependencias vigentes.
 
-[Plan técnico histórico](docs/ENGINEERING_ROADMAP_2026-11-04.md).
+[Estudio técnico histórico](docs/ESTUDIO_DE_EVOLUCION_2026-10-30.md) · [Plan de evolución propuesto — PR #1](https://github.com/andres-olguin/mastertech-web-legacy/pull/1) *(sin fusionar a main)*.
 
 **Aviso:** la presencia de código histórico no prueba una relación societaria de cada trabajo representado ni autoriza su comercialización.
